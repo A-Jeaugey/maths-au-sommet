@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { PhotoTile } from "@/components/PhotoTile";
+import { ContourLines } from "@/components/ContourLines";
 
 const TILES = [
   {
@@ -65,9 +66,10 @@ export function Galerie() {
   return (
     <section
       id="galerie"
-      className="relative bg-neige py-28 text-encre md:py-40"
+      className="relative isolate overflow-hidden bg-neige py-28 text-encre md:py-40"
     >
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+      <ContourLines variant="summit" className="inset-x-0 top-0 h-[600px] -z-0" />
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <SectionLabel number="04" label="Galerie immersive" />
         </Reveal>
@@ -79,7 +81,7 @@ export function Galerie() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="max-w-md text-sm leading-relaxed text-encre/70">
+            <p className="max-w-md text-sm leading-relaxed text-encre/80">
               Mosaïque sélectionnée parmi les sorties préparatoires et les
               repérages à Chamonix. Toutes les photographies sont prises par
               l&apos;équipe encadrante ou les élèves majeurs.
