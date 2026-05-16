@@ -16,15 +16,19 @@ export const SITE = {
   costPerStudent: 870,
 } as const;
 
+// Each chapter carries an altitude that ascends from Le Tour (1 462 m) to
+// the Tête Blanche summit (3 429 m). The altitudes give the page its
+// climbing-narrative spine — every chapter label reads as one more step
+// of the ascent.
 export const CHAPTERS = [
-  { id: "hero", label: "Ouverture", number: "00" },
-  { id: "projet", label: "Le projet", number: "01" },
-  { id: "tete-blanche", label: "Tête Blanche", number: "02" },
-  { id: "annee", label: "L'année", number: "03" },
-  { id: "galerie", label: "Galerie", number: "04" },
-  { id: "equipe", label: "L'équipe", number: "05" },
-  { id: "partenaires", label: "Partenaires", number: "06" },
-  { id: "soutenir", label: "Soutenir", number: "07" },
+  { id: "hero", label: "Ouverture", number: "00", altitude: 1462 },
+  { id: "projet", label: "Le projet", number: "01", altitude: 1700 },
+  { id: "tete-blanche", label: "Tête Blanche", number: "02", altitude: 2000 },
+  { id: "annee", label: "L'année", number: "03", altitude: 2300 },
+  { id: "galerie", label: "Galerie", number: "04", altitude: 2600 },
+  { id: "equipe", label: "L'équipe", number: "05", altitude: 2900 },
+  { id: "partenaires", label: "Partenaires", number: "06", altitude: 3150 },
+  { id: "soutenir", label: "Soutenir", number: "07", altitude: 3429 },
 ] as const;
 
 export const KEY_FIGURES = [

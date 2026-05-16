@@ -3,10 +3,16 @@ import clsx from "clsx";
 type SectionLabelProps = {
   number: string;
   label: string;
+  altitude?: number;
   light?: boolean;
 };
 
-export function SectionLabel({ number, label, light }: SectionLabelProps) {
+export function SectionLabel({
+  number,
+  label,
+  altitude,
+  light,
+}: SectionLabelProps) {
   return (
     <p
       className={clsx(
@@ -26,6 +32,21 @@ export function SectionLabel({ number, label, light }: SectionLabelProps) {
         <span className={light ? "text-neige/80" : "text-encre/80"}>
           {label}
         </span>
+        {altitude !== undefined && (
+          <>
+            {" "}
+            <span aria-hidden>·</span>{" "}
+            <span
+              className={clsx(
+                "tabular-nums",
+                light ? "text-neige/70" : "text-encre/70"
+              )}
+            >
+              {altitude.toLocaleString("fr-FR")}{" "}
+              <span className={light ? "text-neige/40" : "text-encre/40"}>m</span>
+            </span>
+          </>
+        )}
       </span>
     </p>
   );

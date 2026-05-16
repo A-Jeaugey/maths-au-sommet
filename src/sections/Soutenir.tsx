@@ -9,7 +9,7 @@ export function Soutenir() {
       id="soutenir"
       className="relative grain isolate overflow-hidden bg-nuit py-28 text-neige md:py-40"
     >
-      <MountainBackdrop variant="summit" className="opacity-80" />
+      <MountainBackdrop variant="soutenir" className="opacity-90" />
 
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>

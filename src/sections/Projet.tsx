@@ -1,15 +1,17 @@
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
 import { AnimatedNumber } from "@/components/AnimatedNumber";
+import { ContourLines } from "@/components/ContourLines";
 import { KEY_FIGURES } from "@/lib/content";
 
 export function Projet() {
   return (
     <section
       id="projet"
-      className="relative bg-neige py-28 text-encre md:py-40"
+      className="relative isolate overflow-hidden bg-neige py-28 text-encre md:py-40"
     >
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+      <ContourLines variant="ridge" className="inset-y-0 left-0 -z-0" />
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <SectionLabel number="01" label="Le projet" />
         </Reveal>
@@ -23,7 +25,7 @@ export function Projet() {
               </h2>
             </Reveal>
 
-            <div className="mt-10 max-w-prose2 space-y-6 text-[17px] leading-[1.7] text-encre/80 md:text-lg">
+            <div className="mt-10 max-w-prose2 space-y-6 text-[17px] leading-[1.75] text-encre/85 md:text-lg">
               <Reveal delay={0.1}>
                 <p>
                   Le projet est né d&apos;un constat partagé entre enseignants.
@@ -63,8 +65,8 @@ export function Projet() {
                   «&nbsp;L&apos;alpiniste est un homme qui conduit son corps là
                   où, un jour, ses yeux ont regardé.&nbsp;»
                 </blockquote>
-                <figcaption className="mt-6 font-mono text-[11px] uppercase tracking-wider2 text-encre/60">
-                  — Gaston Rébuffat, guide & écrivain
+                <figcaption className="mt-6 font-hand text-2xl leading-tight text-encre/65 -rotate-1">
+                  — Gaston Rébuffat, <span className="text-encre/45">guide &amp; écrivain</span>
                 </figcaption>
               </figure>
             </Reveal>
@@ -78,11 +80,17 @@ export function Projet() {
                 <p className="font-mono text-[10px] uppercase tracking-wider2 text-encre/50">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <p className="font-mono text-4xl font-medium text-encre md:text-5xl">
-                  <AnimatedNumber value={kf.value} />
-                  <span className="text-encre/60">{kf.suffix}</span>
+                <p className="flex items-baseline gap-2 font-mono text-4xl font-medium text-encre md:text-5xl">
+                  <span className="tabular-nums">
+                    <AnimatedNumber value={kf.value} />
+                  </span>
+                  {kf.suffix && (
+                    <span className="text-lg text-encre/55 md:text-xl">
+                      {kf.suffix.trim()}
+                    </span>
+                  )}
                 </p>
-                <p className="text-sm leading-snug text-encre/70">{kf.label}</p>
+                <p className="text-sm leading-snug text-encre/75">{kf.label}</p>
               </div>
             </Reveal>
           ))}

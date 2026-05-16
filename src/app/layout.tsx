@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import {
+  Caveat,
+  Fraunces,
+  Inter,
+  JetBrains_Mono,
+} from "next/font/google";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { Cursor } from "@/components/Cursor";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -18,6 +25,12 @@ const inter = Inter({
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
   display: "swap",
 });
 
@@ -52,9 +65,13 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrains.variable} ${caveat.variable}`}
     >
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <SmoothScroll />
+        <Cursor />
+        {children}
+      </body>
     </html>
   );
 }

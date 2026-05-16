@@ -16,6 +16,7 @@ const config: Config = {
         serif: ["var(--font-fraunces)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
+        hand: ["var(--font-caveat)", "Caveat", "cursive"],
       },
       fontSize: {
         "display-xl": ["clamp(4.5rem, 11vw, 9rem)", { lineHeight: "0.95", letterSpacing: "-0.03em" }],

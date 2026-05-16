@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
+import { ContourLines } from "@/components/ContourLines";
 import { TIMELINE } from "@/lib/content";
 
 export function Annee() {
@@ -11,9 +12,10 @@ export function Annee() {
   return (
     <section
       id="annee"
-      className="relative bg-neige py-28 text-encre md:py-40"
+      className="relative isolate overflow-hidden bg-neige py-28 text-encre md:py-40"
     >
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+      <ContourLines variant="flow" className="inset-0 -z-0" />
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <SectionLabel number="03" label="Une année d'entraînement" />
         </Reveal>
@@ -26,7 +28,7 @@ export function Annee() {
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
-            <p className="mt-8 max-w-prose2 text-[17px] leading-[1.8] text-encre/75 md:text-lg">
+            <p className="mt-8 max-w-prose2 text-[17px] leading-[1.8] text-encre/85 md:text-lg">
               La préparation tisse en parallèle deux fils&nbsp;: financer le
               séjour et préparer les corps. Chaque mois, une étape concrète. La
               cordée se construit avant la marche.
@@ -71,9 +73,13 @@ export function Annee() {
                       left ? "md:pr-16 md:text-right" : "md:pl-16"
                     }`}
                   >
-                    <p className="font-mono text-[11px] uppercase tracking-wider2 text-encre/60">
-                      {String(i + 1).padStart(2, "0")} <span aria-hidden>·</span>{" "}
-                      {step.date}
+                    <p className="flex items-baseline gap-3 text-encre/70">
+                      <span className="font-mono text-[11px] uppercase tracking-wider2 text-encre/50">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-hand text-2xl leading-none -rotate-1">
+                        {step.date}
+                      </span>
                     </p>
                     <h3 className="mt-3 font-serif text-2xl leading-tight md:text-3xl">
                       {step.title}
@@ -84,7 +90,7 @@ export function Annee() {
                       left ? "md:pl-16" : "md:pr-16 md:text-right"
                     }`}
                   >
-                    <p className="max-w-prose2 text-base leading-relaxed text-encre/75 md:text-[17px]">
+                    <p className="max-w-prose2 text-base leading-relaxed text-encre/85 md:text-[17px]">
                       {step.body}
                     </p>
                   </div>

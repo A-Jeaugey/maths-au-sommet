@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
+import { ContourLines } from "@/components/ContourLines";
 import { TEAM, SITE } from "@/lib/content";
 
 function initials(name: string) {
@@ -17,9 +18,10 @@ export function Equipe() {
   return (
     <section
       id="equipe"
-      className="relative bg-neige py-28 text-encre md:py-40"
+      className="relative isolate overflow-hidden bg-neige py-28 text-encre md:py-40"
     >
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+      <ContourLines variant="valley" className="inset-0 -z-0" />
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <SectionLabel number="05" label="L'équipe" />
         </Reveal>
@@ -37,7 +39,7 @@ export function Equipe() {
               </h2>
             </Reveal>
             <Reveal delay={0.15}>
-              <p className="mt-8 max-w-prose2 text-[17px] leading-[1.8] text-encre/75">
+              <p className="mt-8 max-w-prose2 text-[17px] leading-[1.8] text-encre/85">
                 L&apos;équipe encadrante a porté ce projet depuis la première
                 réunion. Sécurité, logistique, financement, cohésion de
                 groupe&nbsp;: chaque rôle compte. Les élèves restent les

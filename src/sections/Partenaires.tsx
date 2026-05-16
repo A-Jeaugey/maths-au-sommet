@@ -1,14 +1,16 @@
 import { Reveal } from "@/components/Reveal";
 import { SectionLabel } from "@/components/SectionLabel";
+import { ContourLines } from "@/components/ContourLines";
 import { PARTNERS } from "@/lib/content";
 
 export function Partenaires() {
   return (
     <section
       id="partenaires"
-      className="relative bg-neige py-28 text-encre md:py-32"
+      className="relative isolate overflow-hidden bg-neige py-28 text-encre md:py-32"
     >
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+      <ContourLines variant="ridge" className="inset-0 -z-0 scale-x-[-1]" />
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <SectionLabel number="06" label="Partenaires" />
         </Reveal>
@@ -21,7 +23,7 @@ export function Partenaires() {
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="md:col-span-5">
-            <p className="max-w-prose2 text-base leading-relaxed text-encre/70 md:text-[17px]">
+            <p className="max-w-prose2 text-base leading-relaxed text-encre/85 md:text-[17px]">
               Sans encadrement professionnel et sans le soutien des partenaires
               locaux, le projet ne tiendrait pas. Nous les remercions pour leur
               confiance.

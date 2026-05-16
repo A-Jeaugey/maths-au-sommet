@@ -8,32 +8,12 @@ import { CHAPTERS } from "@/lib/content";
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeId, setActiveId] = useState<string>("hero");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = CHAPTERS.map((c) => document.getElementById(c.id)).filter(
-      (el): el is HTMLElement => Boolean(el)
-    );
-    if (sections.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActiveId(visible[0].target.id);
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75] }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
   }, []);
 
   return (
@@ -89,46 +69,6 @@ export function Navigation() {
           </button>
         </div>
       </header>
-
-      {/* Side rail — chapter dots, desktop only */}
-      <nav
-        aria-label="Progression dans le récit"
-        className="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 lg:block"
-      >
-        <ul className="flex flex-col gap-3">
-          {CHAPTERS.map((c) => {
-            const isActive = activeId === c.id;
-            return (
-              <li key={c.id}>
-                <a
-                  href={`#${c.id}`}
-                  className="group relative flex items-center gap-3"
-                  aria-label={`Aller à : ${c.label}`}
-                >
-                  <span
-                    className={clsx(
-                      "block h-px transition-all duration-500 ease-editorial",
-                      isActive
-                        ? "w-10 bg-glacier"
-                        : "w-5 bg-encre/30 group-hover:w-7 group-hover:bg-encre/60"
-                    )}
-                  />
-                  <span
-                    className={clsx(
-                      "font-mono text-[10px] uppercase tracking-wider2 transition-opacity",
-                      isActive
-                        ? "text-encre opacity-100"
-                        : "text-encre/50 opacity-0 group-hover:opacity-100"
-                    )}
-                  >
-                    {c.label}
-                  </span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
 
       <AnimatePresence>
         {open && (
