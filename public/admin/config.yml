@@ -1,0 +1,221 @@
+# =============================================================================
+#  Configuration de l'interface d'administration (Sveltia CMS)
+# -----------------------------------------------------------------------------
+#  Édition 100 % en ligne. Après connexion avec le compte GitHub du projet,
+#  le bouton « Publier » enregistre et envoie automatiquement les changements
+#  (commit + push) ; le site se reconstruit et se met à jour tout seul.
+# =============================================================================
+
+backend:
+  name: github
+  # ⚠️ À COMPLÉTER lors de la mise en place :
+  #    remplacer par « compte-du-projet/nom-du-depot »
+  repo: a-jeaugey/maths-au-sommet
+  branch: main # branche publiée par l'hébergeur
+
+# Permet de tester l'admin en local sans connexion GitHub
+# (commande : npx @sveltia/cms-server). Sans aucun effet en ligne.
+local_backend: true
+
+# Dossier où atterrissent les photos importées depuis l'admin.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Langue de l'interface.
+locale: fr
+
+# Message d'aide affiché en haut de l'éditeur.
+site_url: "/"
+
+collections:
+  # ---------------------------------------------------------------------------
+  #  PAGES — l'usine à pages. Créer/modifier des pages faites de blocs.
+  # ---------------------------------------------------------------------------
+  - name: pages
+    label: "Pages du site"
+    label_singular: "Page"
+    description: >-
+      Créez de nouvelles pages (par exemple une tombola, un compte rendu de
+      sortie…) ou modifiez celles qui existent. Une page est une pile de
+      « blocs » : ajoutez-les, réorganisez-les, remplissez-les. Le style et les
+      animations sont appliqués automatiquement.
+    folder: "content/pages"
+    extension: json
+    format: json
+    create: true
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}}  ·  /{{fields.slug}}"
+    editor:
+      preview: false
+    fields:
+      - name: title
+        label: "Titre de la page"
+        widget: string
+
+      - name: slug
+        label: "Adresse de la page (URL)"
+        widget: string
+        hint: >-
+          Ce qui apparaît après le « / » dans l'adresse. Exemple : « tombola »
+          donne votre-site.fr/tombola. Minuscules, chiffres et tirets
+          uniquement, sans espace ni accent. À choisir une fois pour toutes.
+        pattern:
+          - "^[a-z0-9-]+$"
+          - "Minuscules, chiffres et tirets uniquement (ex : tombola, fete-2026)"
+
+      - name: description
+        label: "Phrase de présentation"
+        widget: text
+        required: false
+        hint: "Affichée juste sous le grand titre, en haut de la page."
+
+      - name: theme
+        label: "Ambiance de la page"
+        widget: select
+        default: "light"
+        options:
+          - { label: "Claire (fond blanc)", value: "light" }
+          - { label: "Sombre (fond bleu nuit)", value: "dark" }
+
+      - name: blocks
+        label: "Blocs de la page"
+        label_singular: "Bloc"
+        widget: list
+        hint: "Cliquez sur « Ajouter » pour empiler un bloc, puis glissez pour réorganiser."
+        types:
+          # ---- Titre de section ----
+          - name: sectionHeader
+            label: "Titre de section"
+            widget: object
+            summary: "Titre : {{fields.title}}"
+            fields:
+              - { name: label, label: "Petit texte au-dessus (optionnel)", widget: string, required: false, hint: "Affiché en petites majuscules, ex : « Action de financement »." }
+              - { name: title, label: "Grand titre", widget: string }
+              - { name: highlight, label: "Mot mis en valeur (optionnel)", widget: string, required: false, hint: "Ajouté à la suite du titre, en bleu et en italique." }
+              - { name: intro, label: "Paragraphe d'introduction (optionnel)", widget: text, required: false }
+
+          # ---- Texte ----
+          - name: richText
+            label: "Texte"
+            widget: object
+            summary: "Texte : {{fields.title}}"
+            fields:
+              - { name: title, label: "Titre (optionnel)", widget: string, required: false }
+              - { name: body, label: "Texte", widget: markdown, hint: "Gras, italique, listes et liens possibles via la barre d'outils." }
+
+          # ---- Grille de cases ----
+          - name: cardGrid
+            label: "Grille de cases"
+            widget: object
+            summary: "Cases : {{fields.title}}"
+            fields:
+              - { name: title, label: "Titre (optionnel)", widget: string, required: false }
+              - name: columns
+                label: "Nombre de colonnes"
+                widget: select
+                default: 3
+                options:
+                  - { label: "2 colonnes", value: 2 }
+                  - { label: "3 colonnes", value: 3 }
+                  - { label: "4 colonnes", value: 4 }
+              - name: cards
+                label: "Cases"
+                label_singular: "Case"
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: icon, label: "Emoji (optionnel)", widget: string, required: false, hint: "Ex : 🎟️ 🏔️ 🧀" }
+                  - { name: title, label: "Titre de la case", widget: string }
+                  - { name: text, label: "Texte (optionnel)", widget: text, required: false }
+                  - { name: linkLabel, label: "Texte du lien (optionnel)", widget: string, required: false }
+                  - { name: linkUrl, label: "Adresse du lien (optionnel)", widget: string, required: false }
+
+          # ---- Galerie photos ----
+          - name: gallery
+            label: "Galerie photos"
+            widget: object
+            summary: "Galerie : {{fields.title}}"
+            fields:
+              - { name: title, label: "Titre (optionnel)", widget: string, required: false }
+              - name: images
+                label: "Photos"
+                label_singular: "Photo"
+                widget: list
+                summary: "{{fields.caption}}"
+                fields:
+                  - { name: image, label: "Photo", widget: image }
+                  - { name: caption, label: "Légende (optionnel)", widget: string, required: false }
+                  - { name: meta, label: "Lieu / date (optionnel)", widget: string, required: false }
+
+          # ---- Gros chiffres ----
+          - name: keyFigures
+            label: "Gros chiffres animés"
+            widget: object
+            summary: "Chiffres-clés"
+            fields:
+              - name: figures
+                label: "Chiffres"
+                label_singular: "Chiffre"
+                widget: list
+                summary: "{{fields.value}} {{fields.label}}"
+                fields:
+                  - { name: value, label: "Nombre", widget: number, value_type: int }
+                  - { name: suffix, label: "Unité (optionnel)", widget: string, required: false, hint: "Ex : « € », « m », « lots »." }
+                  - { name: label, label: "Légende", widget: string }
+
+          # ---- Frise / étapes ----
+          - name: timeline
+            label: "Frise / étapes"
+            widget: object
+            summary: "Frise / étapes"
+            fields:
+              - name: steps
+                label: "Étapes"
+                label_singular: "Étape"
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: date, label: "Date ou n° d'étape (optionnel)", widget: string, required: false }
+                  - { name: title, label: "Titre de l'étape", widget: string }
+                  - { name: body, label: "Description (optionnel)", widget: text, required: false }
+
+          # ---- Bouton d'action ----
+          - name: cta
+            label: "Bouton d'action"
+            widget: object
+            summary: "Bouton : {{fields.title}}"
+            fields:
+              - { name: title, label: "Titre", widget: string }
+              - { name: text, label: "Texte (optionnel)", widget: text, required: false }
+              - { name: buttonLabel, label: "Texte du bouton", widget: string }
+              - { name: buttonUrl, label: "Adresse du bouton", widget: string, hint: "Ex : le lien HelloAsso, ou mailto:adresse@exemple.fr" }
+              - { name: secondaryLabel, label: "Second lien — texte (optionnel)", widget: string, required: false }
+              - { name: secondaryUrl, label: "Second lien — adresse (optionnel)", widget: string, required: false }
+
+          # ---- Image + texte ----
+          - name: imageText
+            label: "Image + texte"
+            widget: object
+            summary: "Image + texte : {{fields.title}}"
+            fields:
+              - { name: image, label: "Photo", widget: image }
+              - name: imageSide
+                label: "Position de la photo"
+                widget: select
+                default: "left"
+                options:
+                  - { label: "À gauche", value: "left" }
+                  - { label: "À droite", value: "right" }
+              - { name: title, label: "Titre (optionnel)", widget: string, required: false }
+              - { name: body, label: "Texte", widget: markdown }
+              - { name: caption, label: "Légende sous la photo (optionnel)", widget: string, required: false }
+
+          # ---- Citation ----
+          - name: quote
+            label: "Citation"
+            widget: object
+            summary: "« {{fields.quote}} »"
+            fields:
+              - { name: quote, label: "Citation", widget: text }
+              - { name: author, label: "Auteur (optionnel)", widget: string, required: false }

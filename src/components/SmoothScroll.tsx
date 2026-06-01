@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import type LenisType from "lenis";
 
 /**
  * Inertial smooth-scroll wiring (Lenis). Mounted once at the top of the page.
@@ -18,11 +19,7 @@ export function SmoothScroll() {
     if (reduce) return;
 
     let raf = 0;
-    let lenis: {
-      raf: (t: number) => void;
-      destroy: () => void;
-      scrollTo: (target: unknown, opts?: unknown) => void;
-    } | null = null;
+    let lenis: LenisType | null = null;
     let cancelled = false;
 
     (async () => {

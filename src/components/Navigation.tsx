@@ -5,9 +5,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import { CHAPTERS } from "@/lib/content";
 
-export function Navigation() {
+type NavProps = {
+  /** Prefix for in-page anchors: "" on the home page, "/" on sub-pages so the
+   *  table of contents jumps back to the home sections. */
+  basePath?: string;
+  /** Custom pages built in the admin, listed under the chapters. */
+  pages?: { slug: string; title: string }[];
+};
+
+export function Navigation({ basePath = "", pages = [] }: NavProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const homeHref = basePath ? "/" : "#hero";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -28,7 +37,7 @@ export function Navigation() {
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-10">
           <a
-            href="#hero"
+            href={homeHref}
             className={clsx(
               "font-serif text-lg leading-none tracking-tight transition-colors",
               scrolled ? "text-encre" : "text-neige"
@@ -97,7 +106,7 @@ export function Navigation() {
                     }}
                   >
                     <a
-                      href={`#${c.id}`}
+                      href={`${basePath}#${c.id}`}
                       onClick={() => setOpen(false)}
                       className="group flex items-baseline gap-6 font-serif text-3xl tracking-tight text-neige transition-colors hover:text-glacier md:text-5xl"
                     >
@@ -111,6 +120,27 @@ export function Navigation() {
                   </motion.li>
                 ))}
               </ul>
+
+              {pages.length > 0 && (
+                <div className="mt-12 border-t border-neige/10 pt-8">
+                  <p className="mb-5 font-mono text-xs uppercase tracking-wider2 text-glacier">
+                    Pages
+                  </p>
+                  <ul className="flex flex-wrap gap-x-8 gap-y-3">
+                    {pages.map((p) => (
+                      <li key={p.slug}>
+                        <a
+                          href={`/${p.slug}`}
+                          onClick={() => setOpen(false)}
+                          className="font-serif text-2xl leading-tight text-neige/90 transition-colors hover:text-glacier md:text-3xl"
+                        >
+                          {p.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </motion.div>
         )}
