@@ -13,6 +13,24 @@ backend:
   repo: a-jeaugey/maths-au-sommet
   branch: main # branche publiée par l'hébergeur
 
+  # Connexion GitHub gérée par le site lui-même (routes /api/auth et
+  # /api/callback) : aucun service externe à déployer.
+  # ⚠️ Remplacer par l'adresse finale du site une fois en ligne.
+  base_url: https://maths-au-sommet.fr
+  auth_endpoint: api/auth
+
+  # Filet de secours : permet aussi de se connecter en collant un « jeton
+  # d'accès personnel » GitHub, si jamais la connexion classique pose souci.
+  allow_token_auth: true
+
+  # Messages enregistrés dans l'historique GitHub à chaque publication.
+  commit_messages:
+    create: 'Ajout : {{collection}} « {{slug}} »'
+    update: 'Modification : {{collection}} « {{slug}} »'
+    delete: 'Suppression : {{collection}} « {{slug}} »'
+    uploadMedia: 'Ajout d''une image : {{path}}'
+    deleteMedia: 'Suppression d''une image : {{path}}'
+
 # Permet de tester l'admin en local sans connexion GitHub
 # (commande : npx @sveltia/cms-server). Sans aucun effet en ligne.
 local_backend: true
