@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 
 type Tone = "glacier" | "valley" | "summit" | "ridge" | "refuge" | "snow";
@@ -17,6 +19,9 @@ type Props = {
   meta?: string;
   className?: string;
   ratio?: "portrait" | "landscape" | "square" | "wide";
+  src?: string;
+  alt?: string;
+  onOpen?: () => void;
 };
 
 // Tiny deterministic jitter so each tile leans a slightly different way —
@@ -24,7 +29,6 @@ type Props = {
 function tilt(seed: string): number {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) | 0;
-  // Range roughly -1.6° .. +1.6°
   return ((h % 13) - 6) * 0.27;
 }
 
@@ -33,68 +37,96 @@ export function PhotoTile({
   caption,
   meta,
   className,
+  src,
+  alt,
+  onOpen,
 }: Props) {
   const [c1, c2, c3] = PALETTES[tone];
   const rot = tilt(caption);
+
+  const interactive = !!onOpen;
 
   return (
     <figure
       className={clsx(
         "group relative flex flex-col overflow-visible bg-neige p-2.5 pb-3 shadow-[0_10px_30px_-12px_rgba(10,22,40,0.45)] transition-transform duration-500 ease-editorial hover:!rotate-0 hover:scale-[1.02]",
+        interactive && "cursor-zoom-in",
         className
       )}
       style={{ transform: `rotate(${rot}deg)` }}
+      onClick={onOpen}
+      onKeyDown={
+        interactive
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onOpen!();
+              }
+            }
+          : undefined
+      }
+      role={interactive ? "button" : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-label={interactive ? `Ouvrir : ${caption}` : undefined}
     >
-      <div className="relative flex-1 overflow-hidden">
-        <svg
-          viewBox="0 0 800 600"
-          preserveAspectRatio="xMidYMid slice"
-          className="absolute inset-0 h-full w-full"
-          aria-hidden
-        >
-          <defs>
-            <linearGradient
-              id={`sky-${tone}-${caption.length}`}
-              x1="0"
-              x2="0"
-              y1="0"
-              y2="1"
-            >
-              <stop offset="0" stopColor={c1} />
-              <stop offset="0.6" stopColor={c2} />
-              <stop offset="1" stopColor={c3} stopOpacity="0.4" />
-            </linearGradient>
-          </defs>
-          <rect width="800" height="600" fill={`url(#sky-${tone}-${caption.length})`} />
-          {/* far ridge */}
-          <path
-            d="M0 380 L80 340 L180 360 L280 300 L380 340 L500 280 L620 320 L740 290 L800 320 L800 600 L0 600 Z"
-            fill={c2}
-            opacity="0.7"
+      <div className="relative flex-1 overflow-hidden bg-encre/5">
+        {src ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={src}
+            alt={alt ?? caption}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.04]"
           />
-          {/* mid ridge with snow caps */}
-          <path
-            d="M0 460 L120 410 L240 440 L340 360 L440 420 L560 340 L660 410 L780 370 L800 400 L800 600 L0 600 Z"
-            fill={c1}
-            opacity="0.85"
-          />
-          <path
-            d="M340 360 L358 388 L375 380 L388 400 L372 405 L355 395 Z"
-            fill={c3}
-            opacity="0.85"
-          />
-          <path
-            d="M560 340 L582 372 L600 360 L615 384 L598 390 L578 380 Z"
-            fill={c3}
-            opacity="0.8"
-          />
-          {/* near silhouette */}
-          <path
-            d="M0 540 L100 510 L220 540 L320 490 L460 530 L580 480 L720 530 L800 500 L800 600 L0 600 Z"
-            fill="#050d1a"
-            opacity="0.75"
-          />
-        </svg>
+        ) : (
+          <svg
+            viewBox="0 0 800 600"
+            preserveAspectRatio="xMidYMid slice"
+            className="absolute inset-0 h-full w-full"
+            aria-hidden
+          >
+            <defs>
+              <linearGradient
+                id={`sky-${tone}-${caption.length}`}
+                x1="0"
+                x2="0"
+                y1="0"
+                y2="1"
+              >
+                <stop offset="0" stopColor={c1} />
+                <stop offset="0.6" stopColor={c2} />
+                <stop offset="1" stopColor={c3} stopOpacity="0.4" />
+              </linearGradient>
+            </defs>
+            <rect width="800" height="600" fill={`url(#sky-${tone}-${caption.length})`} />
+            <path
+              d="M0 380 L80 340 L180 360 L280 300 L380 340 L500 280 L620 320 L740 290 L800 320 L800 600 L0 600 Z"
+              fill={c2}
+              opacity="0.7"
+            />
+            <path
+              d="M0 460 L120 410 L240 440 L340 360 L440 420 L560 340 L660 410 L780 370 L800 400 L800 600 L0 600 Z"
+              fill={c1}
+              opacity="0.85"
+            />
+            <path
+              d="M340 360 L358 388 L375 380 L388 400 L372 405 L355 395 Z"
+              fill={c3}
+              opacity="0.85"
+            />
+            <path
+              d="M560 340 L582 372 L600 360 L615 384 L598 390 L578 380 Z"
+              fill={c3}
+              opacity="0.8"
+            />
+            <path
+              d="M0 540 L100 510 L220 540 L320 490 L460 530 L580 480 L720 530 L800 500 L800 600 L0 600 Z"
+              fill="#050d1a"
+              opacity="0.75"
+            />
+          </svg>
+        )}
       </div>
 
       {/* Polaroid white footer — caption sits on the print, not on the image */}
