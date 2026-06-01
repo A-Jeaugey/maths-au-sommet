@@ -55,6 +55,9 @@ export type Block = { background?: Background } & (
       caption?: string;
     }
   | { type: "quote"; quote: string; author?: string }
+  | { type: "fundraiser"; current: number; goal: number; label?: string; currency?: string }
+  | { type: "countdown"; date: string; label?: string; expiredText?: string }
+  | { type: "embed"; url: string; title?: string; height?: number }
 );
 
 export type PageData = {

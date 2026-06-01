@@ -9,6 +9,9 @@ import { TimelineBlock } from "./TimelineBlock";
 import { CtaBlock } from "./CtaBlock";
 import { ImageTextBlock } from "./ImageTextBlock";
 import { QuoteBlock } from "./QuoteBlock";
+import { FundraiserBlock } from "./FundraiserBlock";
+import { CountdownBlock } from "./CountdownBlock";
+import { EmbedBlock } from "./EmbedBlock";
 
 // Maps a stored block to its component. Each block manages its own scroll
 // animations internally, so a page is "animated automatically" no matter
@@ -33,6 +36,12 @@ function renderBlock(block: Block, dark: boolean) {
       return <ImageTextBlock {...block} dark={dark} />;
     case "quote":
       return <QuoteBlock {...block} dark={dark} />;
+    case "fundraiser":
+      return <FundraiserBlock {...block} dark={dark} />;
+    case "countdown":
+      return <CountdownBlock {...block} dark={dark} />;
+    case "embed":
+      return <EmbedBlock {...block} dark={dark} />;
     default:
       return null;
   }

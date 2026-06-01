@@ -358,3 +358,37 @@ collections:
               - { name: quote, label: "Citation", widget: text }
               - { name: author, label: "Auteur (optionnel)", widget: string, required: false }
               - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- Jauge de cagnotte ----
+          - name: fundraiser
+            label: "Jauge de cagnotte"
+            widget: object
+            summary: "Cagnotte : {{fields.current}} / {{fields.goal}}"
+            fields:
+              - { name: current, label: "Montant déjà collecté", widget: number, value_type: int }
+              - { name: goal, label: "Objectif à atteindre", widget: number, value_type: int }
+              - { name: currency, label: "Symbole monétaire", widget: string, default: "€", required: false }
+              - { name: label, label: "Phrase sous la jauge (optionnel)", widget: text, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- Compte à rebours ----
+          - name: countdown
+            label: "Compte à rebours"
+            widget: object
+            summary: "Compte à rebours : {{fields.label}}"
+            fields:
+              - { name: date, label: "Date cible", widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "DD/MM/YYYY", time_format: "HH:mm", hint: "Le compte à rebours s'arrête à cette date et heure." }
+              - { name: label, label: "Titre au-dessus (optionnel)", widget: string, required: false, hint: "Ex : « Départ pour Chamonix dans… »" }
+              - { name: expiredText, label: "Texte une fois la date atteinte (optionnel)", widget: string, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- Contenu intégré (HelloAsso, formulaire, carte...) ----
+          - name: embed
+            label: "Contenu intégré (HelloAsso, formulaire…)"
+            widget: object
+            summary: "Intégration : {{fields.title}}"
+            fields:
+              - { name: url, label: "Adresse à intégrer (URL d'intégration)", widget: string, hint: "Ex : l'URL « widget / iframe » de votre formulaire HelloAsso." }
+              - { name: title, label: "Titre au-dessus (optionnel)", widget: string, required: false }
+              - { name: height, label: "Hauteur (en pixels)", widget: number, value_type: int, default: 700, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
