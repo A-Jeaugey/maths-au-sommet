@@ -137,6 +137,30 @@ collections:
               - { name: deniveleDown, label: "Dénivelé négatif", widget: string }
               - { name: note, label: "Description", widget: text }
 
+          - name: gallery
+            label: "Galerie photos de l'accueil"
+            widget: object
+            fields:
+              - name: chapters
+                label: "Chapitres de la galerie"
+                label_singular: "Chapitre"
+                widget: list
+                summary: "{{fields.title}} {{fields.highlight}}"
+                fields:
+                  - { name: number, label: "Numéro (ex : I., II.)", widget: string }
+                  - { name: title, label: "Titre du chapitre", widget: string }
+                  - { name: highlight, label: "Fin du titre, en bleu (optionnel)", widget: string, required: false }
+                  - { name: meta, label: "Lieu / date du chapitre (optionnel)", widget: string, required: false }
+                  - name: photos
+                    label: "Photos du chapitre"
+                    label_singular: "Photo"
+                    widget: list
+                    summary: "{{fields.caption}}"
+                    fields:
+                      - { name: src, label: "Photo", widget: image }
+                      - { name: caption, label: "Légende (optionnel)", widget: string, required: false }
+                      - { name: meta, label: "Lieu / date (optionnel)", widget: string, required: false }
+
   # ---------------------------------------------------------------------------
   #  PAGES — l'usine à pages. Créer/modifier des pages faites de blocs.
   # ---------------------------------------------------------------------------

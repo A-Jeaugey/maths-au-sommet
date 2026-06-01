@@ -34,3 +34,4 @@ export const TIMELINE = home.timeline;
 export const TEAM = home.team;
 export const PARTNERS = home.partners;
 export const ROUTE_STAGES = home.routeStages;
+export const GALLERY = home.gallery;

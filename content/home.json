@@ -82,5 +82,43 @@
       "deniveleDown": "−1 320 m",
       "note": "Départ à la frontale. Crampons sur le glacier du Tour. Pente qui s'adoucit jusqu'au sommet."
     }
-  ]
+  ],
+  "gallery": {
+    "chapters": [
+      {
+        "number": "I.",
+        "title": "Première ascension —",
+        "highlight": "Colomby de Gex",
+        "meta": "1ᵉʳ février 2026 · 1 689 m · Haut-Jura",
+        "photos": [
+          { "src": "/photos/photo-20260201-wa0028.jpg", "caption": "Sortie de la sapinière, le plateau s'ouvre sous la mer de nuages", "meta": "Crête du Colomby · 1ᵉʳ février 2026" },
+          { "src": "/photos/photo-20260201-wa0067.jpg", "caption": "Vue plein sud — les Alpes émergent de la couche nuageuse", "meta": "Depuis le sommet · 1 689 m" },
+          { "src": "/photos/photo-20260201-wa0069.jpg", "caption": "Le massif du Mont-Blanc, posé sur un océan de coton", "meta": "Reconnaissance · février 2026" },
+          { "src": "/photos/photo-20260201-wa0054.jpg", "caption": "Deux élèves au sommet, face au Mont-Blanc qui se dévoile", "meta": "Sommet du Colomby de Gex" },
+          { "src": "/photos/photo-20260201-wa0034.jpg", "caption": "Les Alpes à l'horizon, premiers regards depuis la crête", "meta": "Plateau d'altitude · Haut-Jura" },
+          { "src": "/photos/photo-20260201-wa0061.jpg", "caption": "Sur la trace, file indienne dans la sapinière de retour", "meta": "Descente · fin d'après-midi" },
+          { "src": "/photos/photo-20260201-wa0046.jpg", "caption": "Premier kilomètre — la cordée se met en mouvement", "meta": "Départ vers le sommet" },
+          { "src": "/photos/photo-20260201-wa0062.jpg", "caption": "Lumière dorée du retour, la trace s'allonge derrière nous", "meta": "Crépuscule · plateau du Jura" },
+          { "src": "/photos/photo-20260201-wa0081.jpg", "caption": "Trois silhouettes au bord du plateau, contemplation", "meta": "Sommet · fin de journée" },
+          { "src": "/photos/photo-20260201-wa0050.jpg", "caption": "Cordée en file indienne, la trace s'ouvre dans la poudreuse", "meta": "Montée régulière" },
+          { "src": "/photos/photo-20260201-wa0029.jpg", "caption": "Soleil bas et traces fraîches, un instant suspendu", "meta": "Contre-jour · Colomby" },
+          { "src": "/photos/photo-20260201-wa0070.jpg", "caption": "Pause sur le replat sommital, vent et collation", "meta": "1 689 m · regroupement" }
+        ]
+      },
+      {
+        "number": "II.",
+        "title": "Préparation —",
+        "highlight": "au gymnase",
+        "meta": "Mars–avril 2026 · Lycée Notre-Dame · Dijon",
+        "photos": [
+          { "src": "/photos/photo-20260324-wa0001.jpg", "caption": "Acrosport — gainage à deux, équilibre et confiance", "meta": "Mars 2026 · gymnase" },
+          { "src": "/photos/photo-20260324-wa0002.jpg", "caption": "Service au volley — coordination et explosivité", "meta": "Mars 2026 · salle Notre-Dame" },
+          { "src": "/photos/photo-20260324-wa0005.jpg", "caption": "Renforcement musculaire à l'élastique, en cercle", "meta": "Mars 2026 · circuit training" },
+          { "src": "/photos/photo-20260402-wa0015.jpg", "caption": "Cercle de cohésion en extérieur, baskets dans l'herbe", "meta": "Avril 2026 · sortie groupe" },
+          { "src": "/photos/photo-20260201-wa0096.jpg", "caption": "Reconnaissance hivernale, sous-bois saupoudré", "meta": "Sortie de cohésion · février" },
+          { "src": "/photos/photo-20260201-wa0041.jpg", "caption": "Sapinière au matin, soleil filtré entre les troncs", "meta": "Approche du sommet" }
+        ]
+      }
+    ]
+  }
 }
