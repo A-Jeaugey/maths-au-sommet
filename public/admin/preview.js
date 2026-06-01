@@ -43,11 +43,20 @@
   function esc(s) {
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
+  // Comme src/lib/url.ts : préfixe https:// si l'adresse n'a pas de schéma,
+  // pour qu'un « google.com » n'ouvre pas …/google.com (chemin relatif).
+  function normUrl(u) {
+    u = (u || "").trim();
+    if (!u) return "#";
+    if (/^(https?:\/\/|mailto:|tel:|\/|#)/i.test(u)) return u;
+    return "https://" + u;
+  }
+
   // Inline markdown → HTML (gras, italique, barré, code, liens, images).
   function inline(t) {
     t = esc(t);
     t = t.replace(/!\[[^\]]*\]\(([^)\s]+)(?:\s+&quot;[^&]*&quot;)?\)/g, '<img src="$1" style="max-width:100%;border-radius:2px;" />');
-    t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" style="color:' + C.glacier + ';">$1</a>');
+    t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, txt, u) { return '<a href="' + normUrl(u) + '" style="color:' + C.glacier + ';">' + txt + "</a>"; });
     t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/__([^_]+)__/g, "<strong>$1</strong>");
     t = t.replace(/\*([^*]+)\*/g, "<em>$1</em>").replace(/(^|[^\w])_([^_]+)_/g, "$1<em>$2</em>");
     t = t.replace(/~~([^~]+)~~/g, "<s>$1</s>");
