@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import type LenisType from "lenis";
 
 /**
@@ -12,7 +13,9 @@ import type LenisType from "lenis";
  * Honoured: prefers-reduced-motion → instant scroll instead of eased.
  */
 export function SmoothScroll() {
+  const pathname = usePathname();
   useEffect(() => {
+    if (pathname && pathname.startsWith("/admin-preview")) return;
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -48,7 +51,7 @@ export function SmoothScroll() {
       lenis?.destroy();
       delete (window as unknown as { __lenis?: unknown }).__lenis;
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 type Mode = "default" | "link" | "media";
@@ -11,11 +12,14 @@ type Mode = "default" | "link" | "media";
  * while this is active. Disabled on touch and under prefers-reduced-motion.
  */
 export function Cursor() {
+  const pathname = usePathname();
+  const disabled = !!pathname && pathname.startsWith("/admin-preview");
   const dotRef = useRef<HTMLDivElement>(null);
   const [mode, setMode] = useState<Mode>("default");
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
+    if (disabled) return;
     if (typeof window === "undefined") return;
 
     // Touch devices keep their native behaviour
@@ -82,7 +86,9 @@ export function Cursor() {
       if (raf) cancelAnimationFrame(raf);
       document.documentElement.classList.remove("custom-cursor-on");
     };
-  }, []);
+  }, [disabled]);
+
+  if (disabled) return null;
 
   return (
     <div
