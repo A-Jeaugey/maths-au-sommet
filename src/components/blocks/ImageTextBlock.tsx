@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { Markdown } from "./Markdown";
 import { tones } from "./theme";
 
@@ -26,15 +26,13 @@ export function ImageTextBlock({
     <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
       <Reveal className={clsx(imageSide === "right" && "md:order-2")}>
         <figure>
-          <div className="relative aspect-[4/3] overflow-hidden bg-encre/10">
-            <Image
-              src={image}
-              alt={caption ?? title ?? ""}
-              fill
-              sizes="(min-width:768px) 50vw, 100vw"
-              className="object-cover"
-            />
-          </div>
+          <ZoomableImage
+            src={image}
+            alt={caption ?? title}
+            caption={caption}
+            sizes="(min-width:768px) 50vw, 100vw"
+            className="aspect-[4/3] bg-encre/10"
+          />
           {caption && (
             <figcaption className={clsx("mt-3 font-hand text-lg", t.muted)}>
               {caption}

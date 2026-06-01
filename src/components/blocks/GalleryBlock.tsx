@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import type { GalleryImage } from "@/lib/pages";
 import { tones } from "./theme";
 
@@ -30,15 +30,14 @@ export function GalleryBlock({ title, images, dark }: Props) {
                 t.cardBg
               )}
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-encre/10">
-                <Image
-                  src={img.image}
-                  alt={img.caption ?? ""}
-                  fill
-                  sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
+              <ZoomableImage
+                src={img.image}
+                alt={img.caption}
+                caption={img.caption}
+                meta={img.meta}
+                sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                className="aspect-[4/3] bg-encre/10"
+              />
               {(img.caption || img.meta) && (
                 <figcaption className="mt-2 px-1">
                   {img.caption && (

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Reveal } from "@/components/Reveal";
 import { tones } from "./theme";
+import { normalizeUrl, isExternalUrl } from "@/lib/url";
 
 type Props = {
   title: string;
@@ -22,7 +23,10 @@ export function CtaBlock({
   dark,
 }: Props) {
   const t = tones(dark);
-  const external = /^https?:\/\//.test(buttonUrl);
+  const url = normalizeUrl(buttonUrl);
+  const external = isExternalUrl(url);
+  const secUrl = secondaryUrl ? normalizeUrl(secondaryUrl) : null;
+  const secExternal = secUrl ? isExternalUrl(secUrl) : false;
   return (
     <div className="max-w-prose2">
       <Reveal>
@@ -36,7 +40,7 @@ export function CtaBlock({
       <Reveal delay={0.16}>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
           <a
-            href={buttonUrl}
+            href={url}
             {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
             className="group inline-flex items-center justify-between gap-6 rounded-full bg-soleil px-7 py-4 font-mono text-xs uppercase tracking-wider2 text-nuit transition-transform hover:-translate-y-0.5"
           >
@@ -45,9 +49,10 @@ export function CtaBlock({
               →
             </span>
           </a>
-          {secondaryLabel && secondaryUrl && (
+          {secondaryLabel && secUrl && (
             <a
-              href={secondaryUrl}
+              href={secUrl}
+              {...(secExternal ? { target: "_blank", rel: "noreferrer" } : {})}
               className={clsx(
                 "inline-flex items-center gap-3 px-3 py-4 font-mono text-xs uppercase tracking-wider2 transition-colors",
                 dark ? "text-neige/70 hover:text-neige" : "text-encre/70 hover:text-encre"

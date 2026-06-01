@@ -8,15 +8,12 @@
 
 backend:
   name: github
-  # ⚠️ À COMPLÉTER lors de la mise en place :
-  #    remplacer par « compte-du-projet/nom-du-depot »
-  repo: a-jeaugey/maths-au-sommet
+  repo: lesmathsausommet/les-maths-au-sommet
   branch: main # branche publiée par l'hébergeur
 
   # Connexion GitHub gérée par le site lui-même (routes /api/auth et
   # /api/callback) : aucun service externe à déployer.
-  # ⚠️ Remplacer par l'adresse finale du site une fois en ligne.
-  base_url: https://maths-au-sommet.fr
+  base_url: https://les-maths-au-sommet.vercel.app
   auth_endpoint: api/auth
 
   # Filet de secours : permet aussi de se connecter en collant un « jeton
@@ -227,6 +224,7 @@ collections:
               - { name: title, label: "Grand titre", widget: string }
               - { name: highlight, label: "Mot mis en valeur (optionnel)", widget: string, required: false, hint: "Ajouté à la suite du titre, en bleu et en italique." }
               - { name: intro, label: "Paragraphe d'introduction (optionnel)", widget: text, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Texte ----
           - name: richText
@@ -235,7 +233,8 @@ collections:
             summary: "Texte : {{fields.title}}"
             fields:
               - { name: title, label: "Titre (optionnel)", widget: string, required: false }
-              - { name: body, label: "Texte", widget: markdown, hint: "Gras, italique, listes et liens possibles via la barre d'outils." }
+              - { name: body, label: "Texte", widget: markdown, hint: "Gras, italique, barré, listes, liens et images possibles via la barre d'outils." }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Grille de cases ----
           - name: cardGrid
@@ -263,6 +262,7 @@ collections:
                   - { name: text, label: "Texte (optionnel)", widget: text, required: false }
                   - { name: linkLabel, label: "Texte du lien (optionnel)", widget: string, required: false }
                   - { name: linkUrl, label: "Adresse du lien (optionnel)", widget: string, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Galerie photos ----
           - name: gallery
@@ -280,6 +280,7 @@ collections:
                   - { name: image, label: "Photo", widget: image }
                   - { name: caption, label: "Légende (optionnel)", widget: string, required: false }
                   - { name: meta, label: "Lieu / date (optionnel)", widget: string, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Gros chiffres ----
           - name: keyFigures
@@ -296,6 +297,7 @@ collections:
                   - { name: value, label: "Nombre", widget: number, value_type: int }
                   - { name: suffix, label: "Unité (optionnel)", widget: string, required: false, hint: "Ex : « € », « m », « lots »." }
                   - { name: label, label: "Légende", widget: string }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Frise / étapes ----
           - name: timeline
@@ -312,6 +314,7 @@ collections:
                   - { name: date, label: "Date ou n° d'étape (optionnel)", widget: string, required: false }
                   - { name: title, label: "Titre de l'étape", widget: string }
                   - { name: body, label: "Description (optionnel)", widget: text, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Bouton d'action ----
           - name: cta
@@ -325,6 +328,7 @@ collections:
               - { name: buttonUrl, label: "Adresse du bouton", widget: string, hint: "Ex : le lien HelloAsso, ou mailto:adresse@exemple.fr" }
               - { name: secondaryLabel, label: "Second lien — texte (optionnel)", widget: string, required: false }
               - { name: secondaryUrl, label: "Second lien — adresse (optionnel)", widget: string, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Image + texte ----
           - name: imageText
@@ -343,6 +347,7 @@ collections:
               - { name: title, label: "Titre (optionnel)", widget: string, required: false }
               - { name: body, label: "Texte", widget: markdown }
               - { name: caption, label: "Légende sous la photo (optionnel)", widget: string, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
 
           # ---- Citation ----
           - name: quote
@@ -352,3 +357,4 @@ collections:
             fields:
               - { name: quote, label: "Citation", widget: text }
               - { name: author, label: "Auteur (optionnel)", widget: string, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }

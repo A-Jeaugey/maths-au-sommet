@@ -25,8 +25,12 @@ export type Figure = { value: number; suffix?: string; label: string };
 
 export type Step = { date?: string; title: string; body?: string };
 
+export type Background = "inherit" | "light" | "dark";
+
 // Discriminated union — `type` decides which component renders the block.
-export type Block =
+// `background` lets a block sit on its own light or dark band, so a single
+// page can alternate clear and dark sections.
+export type Block = { background?: Background } & (
   | { type: "sectionHeader"; label?: string; title: string; highlight?: string; intro?: string }
   | { type: "richText"; title?: string; body: string }
   | { type: "cardGrid"; title?: string; columns?: number; cards: Card[] }
@@ -50,7 +54,8 @@ export type Block =
       body: string;
       caption?: string;
     }
-  | { type: "quote"; quote: string; author?: string };
+  | { type: "quote"; quote: string; author?: string }
+);
 
 export type PageData = {
   slug: string;

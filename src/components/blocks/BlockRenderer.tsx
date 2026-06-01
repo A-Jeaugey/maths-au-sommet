@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { Block } from "@/lib/pages";
 import { SectionHeaderBlock } from "./SectionHeaderBlock";
 import { RichTextBlock } from "./RichTextBlock";
@@ -12,7 +13,7 @@ import { QuoteBlock } from "./QuoteBlock";
 // Maps a stored block to its component. Each block manages its own scroll
 // animations internally, so a page is "animated automatically" no matter
 // how the editor arranges the blocks.
-function renderBlock(block: Block, dark?: boolean) {
+function renderBlock(block: Block, dark: boolean) {
   switch (block.type) {
     case "sectionHeader":
       return <SectionHeaderBlock {...block} dark={dark} />;
@@ -37,14 +38,29 @@ function renderBlock(block: Block, dark?: boolean) {
   }
 }
 
+// Each block can opt into its own light/dark band via `background`, so one
+// page can alternate clear and dark sections. When a block inherits (the
+// default), it stays transparent and uses the page's theme.
 export function BlockRenderer({ blocks, dark }: { blocks: Block[]; dark?: boolean }) {
   return (
     <>
-      {blocks.map((block, i) => (
-        <div key={i} className="mx-auto max-w-[1400px] px-6 py-12 md:px-10 md:py-16">
-          {renderBlock(block, dark)}
-        </div>
-      ))}
+      {blocks.map((block, i) => {
+        const override =
+          block.background && block.background !== "inherit" ? block.background : null;
+        const blockDark = override ? override === "dark" : !!dark;
+        return (
+          <section
+            key={i}
+            className={clsx(
+              override && (blockDark ? "grain bg-nuit text-neige" : "bg-neige text-encre")
+            )}
+          >
+            <div className="mx-auto max-w-[1400px] px-6 py-12 md:px-10 md:py-16">
+              {renderBlock(block, blockDark)}
+            </div>
+          </section>
+        );
+      })}
     </>
   );
 }
