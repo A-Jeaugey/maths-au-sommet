@@ -25,12 +25,16 @@ export type Figure = { value: number; suffix?: string; label: string };
 
 export type Step = { date?: string; title: string; body?: string };
 
-export type Background = "inherit" | "light" | "dark";
+export type Background = "inherit" | "light" | "dark" | "accent";
 
 // Discriminated union — `type` decides which component renders the block.
 // `background` lets a block sit on its own light or dark band, so a single
 // page can alternate clear and dark sections.
-export type Block = { background?: Background } & (
+export type Block = {
+  background?: Background;
+  width?: "narrow" | "normal" | "wide" | "full";
+  align?: "left" | "center";
+} & (
   | { type: "sectionHeader"; label?: string; title: string; highlight?: string; intro?: string }
   | { type: "richText"; title?: string; body: string }
   | { type: "cardGrid"; title?: string; columns?: number; cards: Card[] }
@@ -67,6 +71,16 @@ export type Block = { background?: Background } & (
       align?: "left" | "center";
       buttons: { label: string; url: string; style?: "primary" | "secondary" }[];
     }
+  | {
+      type: "banner";
+      image: string;
+      title?: string;
+      text?: string;
+      buttonLabel?: string;
+      buttonUrl?: string;
+      height?: "small" | "medium" | "large";
+    }
+  | { type: "separator"; style?: "line" | "space"; size?: "small" | "medium" | "large" }
 );
 
 export type PageData = {

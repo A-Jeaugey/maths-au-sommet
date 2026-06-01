@@ -224,7 +224,9 @@ collections:
               - { name: title, label: "Grand titre", widget: string }
               - { name: highlight, label: "Mot mis en valeur (optionnel)", widget: string, required: false, hint: "Ajouté à la suite du titre, en bleu et en italique." }
               - { name: intro, label: "Paragraphe d'introduction (optionnel)", widget: text, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: width, label: "Largeur du bloc (optionnel)", widget: select, required: false, default: "normal", options: [{ label: "Normale", value: "normal" }, { label: "Étroite", value: "narrow" }, { label: "Large", value: "wide" }, { label: "Pleine largeur", value: "full" }] }
+              - { name: align, label: "Alignement du texte (optionnel)", widget: select, required: false, default: "left", options: [{ label: "À gauche", value: "left" }, { label: "Centré", value: "center" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Texte ----
           - name: richText
@@ -234,7 +236,9 @@ collections:
             fields:
               - { name: title, label: "Titre (optionnel)", widget: string, required: false }
               - { name: body, label: "Texte", widget: markdown, hint: "Gras, italique, barré, listes, liens et images possibles via la barre d'outils." }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: width, label: "Largeur du bloc (optionnel)", widget: select, required: false, default: "normal", options: [{ label: "Normale", value: "normal" }, { label: "Étroite", value: "narrow" }, { label: "Large", value: "wide" }, { label: "Pleine largeur", value: "full" }] }
+              - { name: align, label: "Alignement du texte (optionnel)", widget: select, required: false, default: "left", options: [{ label: "À gauche", value: "left" }, { label: "Centré", value: "center" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Grille de cases ----
           - name: cardGrid
@@ -262,7 +266,7 @@ collections:
                   - { name: text, label: "Texte (optionnel)", widget: text, required: false }
                   - { name: linkLabel, label: "Texte du lien (optionnel)", widget: string, required: false }
                   - { name: linkUrl, label: "Adresse du lien (optionnel)", widget: string, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Galerie photos ----
           - name: gallery
@@ -280,7 +284,7 @@ collections:
                   - { name: image, label: "Photo", widget: image }
                   - { name: caption, label: "Légende (optionnel)", widget: string, required: false }
                   - { name: meta, label: "Lieu / date (optionnel)", widget: string, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Gros chiffres ----
           - name: keyFigures
@@ -297,7 +301,7 @@ collections:
                   - { name: value, label: "Nombre", widget: number, value_type: int }
                   - { name: suffix, label: "Unité (optionnel)", widget: string, required: false, hint: "Ex : « € », « m », « lots »." }
                   - { name: label, label: "Légende", widget: string }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Frise / étapes ----
           - name: timeline
@@ -314,7 +318,7 @@ collections:
                   - { name: date, label: "Date ou n° d'étape (optionnel)", widget: string, required: false }
                   - { name: title, label: "Titre de l'étape", widget: string }
                   - { name: body, label: "Description (optionnel)", widget: text, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Bouton d'action ----
           - name: cta
@@ -328,7 +332,7 @@ collections:
               - { name: buttonUrl, label: "Adresse du bouton", widget: string, hint: "Ex : le lien HelloAsso, ou mailto:adresse@exemple.fr" }
               - { name: secondaryLabel, label: "Second lien — texte (optionnel)", widget: string, required: false }
               - { name: secondaryUrl, label: "Second lien — adresse (optionnel)", widget: string, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Image + texte ----
           - name: imageText
@@ -347,7 +351,7 @@ collections:
               - { name: title, label: "Titre (optionnel)", widget: string, required: false }
               - { name: body, label: "Texte", widget: markdown }
               - { name: caption, label: "Légende sous la photo (optionnel)", widget: string, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Citation ----
           - name: quote
@@ -357,7 +361,7 @@ collections:
             fields:
               - { name: quote, label: "Citation", widget: text }
               - { name: author, label: "Auteur (optionnel)", widget: string, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Jauge de cagnotte ----
           - name: fundraiser
@@ -369,7 +373,7 @@ collections:
               - { name: goal, label: "Objectif à atteindre", widget: number, value_type: int }
               - { name: currency, label: "Symbole monétaire", widget: string, default: "€", required: false }
               - { name: label, label: "Phrase sous la jauge (optionnel)", widget: text, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Compte à rebours ----
           - name: countdown
@@ -380,7 +384,7 @@ collections:
               - { name: date, label: "Date cible", widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "DD/MM/YYYY", time_format: "HH:mm", hint: "Le compte à rebours s'arrête à cette date et heure." }
               - { name: label, label: "Titre au-dessus (optionnel)", widget: string, required: false, hint: "Ex : « Départ pour Chamonix dans… »" }
               - { name: expiredText, label: "Texte une fois la date atteinte (optionnel)", widget: string, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Contenu intégré (HelloAsso, formulaire, carte...) ----
           - name: embed
@@ -391,7 +395,7 @@ collections:
               - { name: url, label: "Adresse à intégrer (URL d'intégration)", widget: string, hint: "Ex : l'URL « widget / iframe » de votre formulaire HelloAsso." }
               - { name: title, label: "Titre au-dessus (optionnel)", widget: string, required: false }
               - { name: height, label: "Hauteur (en pixels)", widget: number, value_type: int, default: 700, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Vidéo ----
           - name: video
@@ -402,7 +406,7 @@ collections:
               - { name: url, label: "Lien de la vidéo", widget: string, hint: "Collez le lien YouTube ou Vimeo (la barre d'adresse suffit)." }
               - { name: title, label: "Titre au-dessus (optionnel)", widget: string, required: false }
               - { name: caption, label: "Légende sous la vidéo (optionnel)", widget: string, required: false }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- FAQ / accordéon ----
           - name: accordion
@@ -419,7 +423,7 @@ collections:
                 fields:
                   - { name: question, label: "Question", widget: string }
                   - { name: answer, label: "Réponse", widget: markdown }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Tableau ----
           - name: table
@@ -435,7 +439,7 @@ collections:
                 widget: list
                 fields:
                   - { name: cells, label: "Cellules (une par colonne)", widget: list, field: { name: cell, label: "Cellule", widget: string } }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Document à télécharger ----
           - name: file
@@ -447,7 +451,7 @@ collections:
               - { name: file, label: "Fichier", widget: file }
               - { name: description, label: "Description (optionnel)", widget: text, required: false }
               - { name: buttonLabel, label: "Texte du bouton (optionnel)", widget: string, required: false, default: "Télécharger" }
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
 
           # ---- Boutons ----
           - name: buttons
@@ -473,4 +477,27 @@ collections:
                     widget: select
                     default: "primary"
                     options: [{ label: "Plein (jaune)", value: "primary" }, { label: "Contour", value: "secondary" }]
-              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }, { label: "Accent (jaune)", value: "accent" }] }
+
+          # ---- Bannière (image de fond) ----
+          - name: banner
+            label: "Bannière (image de fond)"
+            widget: object
+            summary: "Bannière : {{fields.title}}"
+            fields:
+              - { name: image, label: "Image de fond", widget: image }
+              - { name: title, label: "Titre (optionnel)", widget: string, required: false }
+              - { name: text, label: "Texte (optionnel)", widget: text, required: false }
+              - { name: buttonLabel, label: "Texte du bouton (optionnel)", widget: string, required: false }
+              - { name: buttonUrl, label: "Lien du bouton (optionnel)", widget: string, required: false }
+              - { name: height, label: "Hauteur", widget: select, default: "medium", options: [{ label: "Petite", value: "small" }, { label: "Moyenne", value: "medium" }, { label: "Grande", value: "large" }] }
+              - { name: align, label: "Position du texte", widget: select, default: "center", options: [{ label: "Centré", value: "center" }, { label: "En bas à gauche", value: "left" }] }
+
+          # ---- Séparateur / espace ----
+          - name: separator
+            label: "Séparateur / espace"
+            widget: object
+            summary: "Séparateur"
+            fields:
+              - { name: style, label: "Type", widget: select, default: "line", options: [{ label: "Trait fin", value: "line" }, { label: "Espace vide", value: "space" }] }
+              - { name: size, label: "Taille", widget: select, default: "medium", options: [{ label: "Petite", value: "small" }, { label: "Moyenne", value: "medium" }, { label: "Grande", value: "large" }] }
