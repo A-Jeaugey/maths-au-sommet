@@ -100,8 +100,8 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-neige/10 pt-8 text-xs text-neige/50 md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {SITE.schoolName} · Tous droits
-            réservés
+            © {new Date().getFullYear()} Les Maths au Sommet — {SITE.schoolName},{" "}
+            {SITE.city} · Tous droits réservés
           </p>
           <p className="font-mono uppercase tracking-wider2">
             Crédits photos : équipe enseignante & élèves · Mentions légales
