@@ -58,6 +58,15 @@ export type Block = { background?: Background } & (
   | { type: "fundraiser"; current: number; goal: number; label?: string; currency?: string }
   | { type: "countdown"; date: string; label?: string; expiredText?: string }
   | { type: "embed"; url: string; title?: string; height?: number }
+  | { type: "video"; url: string; title?: string; caption?: string }
+  | { type: "accordion"; title?: string; items: { question: string; answer: string }[] }
+  | { type: "table"; title?: string; headers?: string[]; rows: { cells: string[] }[] }
+  | { type: "file"; title?: string; file: string; description?: string; buttonLabel?: string }
+  | {
+      type: "buttons";
+      align?: "left" | "center";
+      buttons: { label: string; url: string; style?: "primary" | "secondary" }[];
+    }
 );
 
 export type PageData = {

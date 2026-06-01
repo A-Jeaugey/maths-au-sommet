@@ -12,6 +12,11 @@ import { QuoteBlock } from "./QuoteBlock";
 import { FundraiserBlock } from "./FundraiserBlock";
 import { CountdownBlock } from "./CountdownBlock";
 import { EmbedBlock } from "./EmbedBlock";
+import { VideoBlock } from "./VideoBlock";
+import { AccordionBlock } from "./AccordionBlock";
+import { TableBlock } from "./TableBlock";
+import { FileBlock } from "./FileBlock";
+import { ButtonsBlock } from "./ButtonsBlock";
 
 // Maps a stored block to its component. Each block manages its own scroll
 // animations internally, so a page is "animated automatically" no matter
@@ -42,6 +47,16 @@ function renderBlock(block: Block, dark: boolean) {
       return <CountdownBlock {...block} dark={dark} />;
     case "embed":
       return <EmbedBlock {...block} dark={dark} />;
+    case "video":
+      return <VideoBlock {...block} dark={dark} />;
+    case "accordion":
+      return <AccordionBlock {...block} dark={dark} />;
+    case "table":
+      return <TableBlock {...block} dark={dark} />;
+    case "file":
+      return <FileBlock {...block} dark={dark} />;
+    case "buttons":
+      return <ButtonsBlock {...block} dark={dark} />;
     default:
       return null;
   }

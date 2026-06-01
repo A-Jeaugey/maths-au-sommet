@@ -392,3 +392,85 @@ collections:
               - { name: title, label: "Titre au-dessus (optionnel)", widget: string, required: false }
               - { name: height, label: "Hauteur (en pixels)", widget: number, value_type: int, default: 700, required: false }
               - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- Vidéo ----
+          - name: video
+            label: "Vidéo (YouTube / Vimeo)"
+            widget: object
+            summary: "Vidéo : {{fields.title}}"
+            fields:
+              - { name: url, label: "Lien de la vidéo", widget: string, hint: "Collez le lien YouTube ou Vimeo (la barre d'adresse suffit)." }
+              - { name: title, label: "Titre au-dessus (optionnel)", widget: string, required: false }
+              - { name: caption, label: "Légende sous la vidéo (optionnel)", widget: string, required: false }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- FAQ / accordéon ----
+          - name: accordion
+            label: "FAQ / questions dépliables"
+            widget: object
+            summary: "FAQ : {{fields.title}}"
+            fields:
+              - { name: title, label: "Titre (optionnel)", widget: string, required: false }
+              - name: items
+                label: "Questions"
+                label_singular: "Question"
+                widget: list
+                summary: "{{fields.question}}"
+                fields:
+                  - { name: question, label: "Question", widget: string }
+                  - { name: answer, label: "Réponse", widget: markdown }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- Tableau ----
+          - name: table
+            label: "Tableau"
+            widget: object
+            summary: "Tableau : {{fields.title}}"
+            fields:
+              - { name: title, label: "Titre (optionnel)", widget: string, required: false }
+              - { name: headers, label: "En-têtes de colonnes (optionnel)", widget: list, required: false, field: { name: cell, label: "Colonne", widget: string } }
+              - name: rows
+                label: "Lignes"
+                label_singular: "Ligne"
+                widget: list
+                fields:
+                  - { name: cells, label: "Cellules (une par colonne)", widget: list, field: { name: cell, label: "Cellule", widget: string } }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- Document à télécharger ----
+          - name: file
+            label: "Document à télécharger (PDF…)"
+            widget: object
+            summary: "Document : {{fields.title}}"
+            fields:
+              - { name: title, label: "Titre du document", widget: string, required: false }
+              - { name: file, label: "Fichier", widget: file }
+              - { name: description, label: "Description (optionnel)", widget: text, required: false }
+              - { name: buttonLabel, label: "Texte du bouton (optionnel)", widget: string, required: false, default: "Télécharger" }
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
+
+          # ---- Boutons ----
+          - name: buttons
+            label: "Boutons"
+            widget: object
+            summary: "Boutons"
+            fields:
+              - name: align
+                label: "Alignement"
+                widget: select
+                default: "left"
+                options: [{ label: "À gauche", value: "left" }, { label: "Centré", value: "center" }]
+              - name: buttons
+                label: "Boutons"
+                label_singular: "Bouton"
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: "Texte du bouton", widget: string }
+                  - { name: url, label: "Adresse / lien", widget: string }
+                  - name: style
+                    label: "Style"
+                    widget: select
+                    default: "primary"
+                    options: [{ label: "Plein (jaune)", value: "primary" }, { label: "Contour", value: "secondary" }]
+              - { name: background, label: "Fond de ce bloc (optionnel)", widget: select, required: false, default: "inherit", options: [{ label: "Hérité de la page", value: "inherit" }, { label: "Clair", value: "light" }, { label: "Sombre (bleu nuit)", value: "dark" }] }
