@@ -1,0 +1,99 @@
+{
+  "title": "Grande tombola du printemps",
+  "description": "Tentez votre chance, gagnez de superbes lots offerts par nos partenaires, et aidez la cordée à rejoindre le sommet de Tête Blanche.",
+  "theme": "light",
+  "blocks": [
+    {
+      "type": "sectionHeader",
+      "label": "Action de financement",
+      "title": "Un ticket, un",
+      "highlight": "sommet.",
+      "intro": "Du 15 mai au 20 juin 2026, la cordée organise sa grande tombola. Chaque ticket acheté finance directement le séjour à Chamonix — et vous fait peut-être gagner l'un des nombreux lots offerts par nos partenaires."
+    },
+    {
+      "type": "keyFigures",
+      "figures": [
+        { "value": 500, "suffix": " lots", "label": "à gagner au total" },
+        { "value": 2, "suffix": " €", "label": "le ticket" },
+        { "value": 1, "suffix": " grand prix", "label": "un week-end à Chamonix" },
+        { "value": 100, "suffix": " %", "label": "reversé au projet" }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "title": "Les principaux lots",
+      "columns": 3,
+      "cards": [
+        {
+          "icon": "🏔️",
+          "title": "Week-end à Chamonix",
+          "text": "Deux nuits pour deux personnes au pied du Mont-Blanc, offert par notre partenaire hébergeur."
+        },
+        {
+          "icon": "🎒",
+          "title": "Sac d'alpinisme MILLET",
+          "text": "Un sac à dos technique 40 L, identique à l'équipement officiel de l'expédition."
+        },
+        {
+          "icon": "🧀",
+          "title": "Panier du Jura",
+          "text": "Comté, morbier et spécialités de la Fruitière des Monts de Joux."
+        },
+        {
+          "icon": "🥖",
+          "title": "Bons boulangerie Héliot",
+          "text": "Dix bons gourmands à partager en famille."
+        },
+        {
+          "icon": "📚",
+          "title": "Bons d'achat",
+          "text": "Plusieurs bons offerts par les commerçants du quartier."
+        },
+        {
+          "icon": "🎁",
+          "title": "… et bien d'autres",
+          "text": "Livres, jeux, goodies du projet et surprises à retirer au lycée."
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "steps": [
+        {
+          "date": "Étape 1",
+          "title": "Achetez vos tickets",
+          "body": "En ligne via le bouton plus bas, ou directement auprès d'un élève de la cordée au lycée Notre-Dame."
+        },
+        {
+          "date": "Étape 2",
+          "title": "Notez votre numéro",
+          "body": "Chaque ticket porte un numéro unique. Conservez-le précieusement jusqu'au tirage."
+        },
+        {
+          "date": "Étape 3",
+          "title": "Tirage au sort",
+          "body": "Le tirage aura lieu le 20 juin 2026 lors de la fête du lycée. Les gagnants seront prévenus par e-mail."
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "quote": "Chaque ticket nous rapproche un peu plus du refuge Albert 1ᵉʳ.",
+      "author": "La cordée des Terminales"
+    },
+    {
+      "type": "richText",
+      "title": "Comment ça marche ?",
+      "body": "Le règlement complet est disponible au secrétariat du lycée. Quelques points essentiels :\n\n- La participation est ouverte à **tous** : élèves, familles, personnels et amis du projet.\n- Le tirage est effectué en présence de deux enseignants encadrants.\n- Les lots non réclamés sous un mois seront **remis en jeu** lors d'une prochaine action.\n\nUne question ? Écrivez-nous depuis la rubrique [Soutenir](/#soutenir)."
+    },
+    {
+      "type": "cta",
+      "title": "Prêt à tenter votre chance ?",
+      "text": "Réservez vos tickets en ligne en quelques clics. Le paiement est sécurisé et 100 % des fonds vont au projet.",
+      "buttonLabel": "Acheter mes tickets",
+      "buttonUrl": "https://www.helloasso.com/",
+      "secondaryLabel": "Nous écrire",
+      "secondaryUrl": "mailto:contact@notredame-dijon.fr"
+    }
+  ]
+}

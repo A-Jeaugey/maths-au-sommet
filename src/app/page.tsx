@@ -9,12 +9,14 @@ import { Galerie } from "@/sections/Galerie";
 import { Equipe } from "@/sections/Equipe";
 import { Partenaires } from "@/sections/Partenaires";
 import { Soutenir } from "@/sections/Soutenir";
+import { getPageLinks } from "@/lib/pages";
 
 export default function Home() {
+  const pages = getPageLinks();
   return (
     <>
       <ScrollProgress />
-      <Navigation />
+      <Navigation pages={pages} />
       <main>
         <Hero />
         <Projet />

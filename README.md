@@ -57,22 +57,25 @@ src/
     content.ts            # source unique du contenu éditorial
 ```
 
-## Modifier le contenu
+## Modifier le contenu (sans coder)
 
-Tous les textes éditoriaux centralisés se trouvent dans
-[`src/lib/content.ts`](src/lib/content.ts) :
+Le site s'édite **en ligne**, depuis une interface d'administration, à
+l'adresse **`/admin`** — sans toucher au code. Guide pas-à-pas pour la
+personne qui gère le site : [`docs/GUIDE-ADMIN.md`](docs/GUIDE-ADMIN.md).
 
-- `SITE` — métadonnées globales (lien HelloAsso, email, dates, chiffres)
-- `CHAPTERS` — table des matières (utilisée par la nav)
-- `KEY_FIGURES` — chiffres animés du chapitre 1
-- `TIMELINE` — étapes de la frise chronologique
-- `TEAM` — quatre adultes encadrants
-- `PARTNERS` — liste des partenaires
-- `ROUTE_STAGES` — itinéraire en deux jours
+Sous le capot, le contenu éditable vit dans des fichiers de données que
+l'admin écrit toute seule (commit + push automatiques) :
 
-Les textes plus longs (introduction, paragraphes éditoriaux) restent au
-plus près des composants concernés (`src/sections/*.tsx`) pour que la
-mise en page reste lisible.
+- [`content/site.json`](content/site.json) — réglages globaux (lien
+  HelloAsso, e-mail, dates, coût…), exposé via `SITE`.
+- [`content/home.json`](content/home.json) — listes de l'accueil :
+  chiffres, frise, équipe, partenaires, itinéraire, **galerie**.
+- [`content/pages/*.json`](content/pages) — une page = un fichier ; pages
+  faites de blocs, rendues par la route `src/app/[slug]/page.tsx`.
+
+`CHAPTERS` reste dans [`src/lib/content.ts`](src/lib/content.ts) (structure
+de navigation, non éditable). Le design, la 3D et les animations restent
+volontairement dans le code.
 
 ## Données à fournir avant mise en ligne
 
@@ -85,17 +88,15 @@ mise en page reste lisible.
 
 ## Photos
 
-Les visuels du site sont actuellement des **illustrations SVG en
-placeholder** (composants `MountainBackdrop` et `PhotoTile`). Pour
-intégrer les photographies réelles :
+Les photographies réelles sont dans [`public/photos/`](public/photos)
+(préparées via [`scripts/process_photos.py`](scripts/process_photos.py)).
+La galerie d'accueil — deux chapitres + agrandissement au clic (lightbox) —
+se gère **depuis l'admin** (« Page d'accueil » → « Galerie ») : la taille
+des tuiles et les animations sont appliquées automatiquement par position,
+l'éditrice ne renseigne que photo + légende + lieu/date.
 
-1. Déposer les originaux dans `public/photos/` (formats source).
-2. Optimiser au build avec `next/image` (formats AVIF + WebP automatiques).
-3. Remplacer les `<PhotoTile />` du chapitre Galerie par
-   `<Image src="/photos/..." />` en gardant le même cadre / ratio.
-4. Vérifier au cas par cas que les autorisations parentales couvrent un
-   usage sur ce site externe (et pas seulement les supports internes
-   Saint-Augustin).
+⚠️ Vérifier au cas par cas que les autorisations parentales couvrent une
+diffusion sur ce site public ; les visages des mineurs restent floutés.
 
 ## Accessibilité & performance
 
@@ -105,7 +106,13 @@ intégrer les photographies réelles :
 - Polices chargées via `next/font` (pas de FOIT, swap propre)
 - Cible Lighthouse ≥ 90 sur toutes les catégories
 
-## Déploiement
+## Déploiement & mise en ligne
 
-Conçu pour **Vercel** (zero-config) ou **Netlify**. Aucune variable
-d'environnement requise pour la V1.
+Conçu pour **Vercel** (ou Netlify). L'interface `/admin` (Sveltia CMS)
+publie en committant sur GitHub via deux routes intégrées au site
+(`/api/auth` et `/api/callback`), qui nécessitent une OAuth App GitHub et
+deux variables d'environnement : `OAUTH_GITHUB_CLIENT_ID` et
+`OAUTH_GITHUB_CLIENT_SECRET`.
+
+Procédure complète (compte projet dédié, hébergement, domaine, pérennité de
+l'accès dans le temps) : [`docs/MISE-EN-LIGNE.md`](docs/MISE-EN-LIGNE.md).
