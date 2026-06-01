@@ -47,6 +47,107 @@ site_url: "/"
 
 collections:
   # ---------------------------------------------------------------------------
+  #  RÉGLAGES DU SITE — informations globales (lien cagnotte, e-mail, dates…).
+  # ---------------------------------------------------------------------------
+  - name: settings
+    label: "Réglages du site"
+    description: "Les informations qui apparaissent un peu partout sur le site."
+    editor:
+      preview: false
+    files:
+      - name: general
+        label: "Informations générales"
+        file: "content/site.json"
+        fields:
+          - { name: hellloAssoUrl, label: "Lien de la cagnotte HelloAsso", widget: string, hint: "L'adresse exacte de la cagnotte. Collez le lien complet (https://…)." }
+          - { name: contactEmail, label: "E-mail de contact", widget: string }
+          - { name: schoolName, label: "Nom du lycée", widget: string }
+          - { name: city, label: "Ville", widget: string }
+          - { name: schoolYear, label: "Année scolaire", widget: string }
+          - { name: studentsCount, label: "Nombre d'élèves", widget: number, value_type: int }
+          - { name: summitName, label: "Nom du sommet", widget: string }
+          - { name: summitAltitude, label: "Altitude du sommet (en mètres)", widget: number, value_type: int }
+          - { name: expeditionDates, label: "Dates de l'expédition", widget: string }
+          - { name: guideCompany, label: "Compagnie des guides", widget: string }
+          - { name: guideCompanyFounded, label: "Année de création de la compagnie", widget: number, value_type: int }
+          - { name: costPerStudent, label: "Coût par élève (en euros)", widget: number, value_type: int }
+
+  # ---------------------------------------------------------------------------
+  #  PAGE D'ACCUEIL — contenu de la page principale (hors animations/3D).
+  # ---------------------------------------------------------------------------
+  - name: home
+    label: "Page d'accueil"
+    description: "Les listes affichées sur la page d'accueil. Le design et les animations restent inchangés."
+    editor:
+      preview: false
+    files:
+      - name: home
+        label: "Contenu de la page d'accueil"
+        file: "content/home.json"
+        fields:
+          - name: keyFigures
+            label: "Chiffres-clés (compteurs animés)"
+            label_singular: "Chiffre"
+            widget: list
+            summary: "{{fields.value}}{{fields.suffix}} — {{fields.label}}"
+            fields:
+              - { name: value, label: "Nombre", widget: number, value_type: int }
+              - { name: suffix, label: "Unité (optionnel)", widget: string, required: false, hint: "Ex : « m », « jours »." }
+              - { name: label, label: "Légende", widget: string }
+
+          - name: timeline
+            label: "Frise de l'année"
+            label_singular: "Étape"
+            widget: list
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { name: date, label: "Date", widget: string }
+              - { name: title, label: "Titre", widget: string }
+              - { name: body, label: "Description", widget: text }
+
+          - name: team
+            label: "Équipe encadrante"
+            label_singular: "Encadrant"
+            widget: list
+            summary: "{{fields.name}} — {{fields.role}}"
+            fields:
+              - { name: name, label: "Nom", widget: string }
+              - { name: role, label: "Fonction", widget: string }
+              - { name: note, label: "Précision", widget: string }
+
+          - name: partners
+            label: "Partenaires"
+            label_singular: "Partenaire"
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: "Nom du partenaire", widget: string }
+              - { name: note, label: "Précision", widget: string }
+
+          - name: routeStages
+            label: "Itinéraire (les 2 jours d'ascension)"
+            label_singular: "Jour"
+            widget: list
+            summary: "{{fields.day}} — {{fields.title}}"
+            fields:
+              - { name: day, label: "Jour", widget: string }
+              - { name: title, label: "Trajet", widget: string }
+              - { name: altitude, label: "Altitude atteinte", widget: string }
+              - { name: deniveleUp, label: "Dénivelé positif", widget: string }
+              - { name: deniveleDown, label: "Dénivelé négatif", widget: string }
+              - { name: note, label: "Description", widget: text }
+
+          - name: gallery
+            label: "Galerie photos de l'accueil"
+            label_singular: "Photo"
+            widget: list
+            summary: "{{fields.meta}}"
+            fields:
+              - { name: image, label: "Photo", widget: image }
+              - { name: caption, label: "Légende (optionnel)", widget: string, required: false }
+              - { name: meta, label: "Lieu / date (optionnel)", widget: string, required: false }
+
+  # ---------------------------------------------------------------------------
   #  PAGES — l'usine à pages. Créer/modifier des pages faites de blocs.
   # ---------------------------------------------------------------------------
   - name: pages
