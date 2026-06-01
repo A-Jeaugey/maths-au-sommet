@@ -125,6 +125,14 @@ export function Markdown({
             </ol>
           );
         }
+        if (lines.every((l) => /^>\s?/.test(l) || l.trim() === "")) {
+          const inner = lines.map((l) => l.replace(/^>\s?/, "")).join(" ").trim();
+          return (
+            <blockquote key={bi} className="border-l-2 border-glacier/50 pl-4 italic">
+              {renderInline(inner, `q${bi}`)}
+            </blockquote>
+          );
+        }
         return <p key={bi}>{renderInline(lines.join(" "), `p${bi}`)}</p>;
       })}
     </div>

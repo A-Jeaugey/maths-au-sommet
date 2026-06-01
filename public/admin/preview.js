@@ -74,6 +74,10 @@
       if (lines.every(function (l) { return /^\d+\.\s+/.test(l.trim()); })) {
         return '<ol style="margin:0 0 1em;padding-left:22px;line-height:1.7;">' + lines.map(function (l) { return "<li>" + inline(l.trim().replace(/^\d+\.\s+/, "")) + "</li>"; }).join("") + "</ol>";
       }
+      if (lines.every(function (l) { return /^>\s?/.test(l) || l.trim() === ""; })) {
+        var qi = lines.map(function (l) { return l.replace(/^>\s?/, ""); }).join(" ").trim();
+        return '<blockquote style="border-left:2px solid rgba(74,175,212,0.5);padding-left:16px;font-style:italic;margin:0 0 1em;line-height:1.75;">' + inline(qi) + "</blockquote>";
+      }
       return '<p style="margin:0 0 1em;line-height:1.75;">' + inline(lines.join(" ")) + "</p>";
     }).join("");
   }
