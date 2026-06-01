@@ -8,7 +8,7 @@
   </head>
   <body>
     <!--
-      Interface d'édition du site (Sveltia CMS), chargée depuis Internet :
+      Interface d'édition du site (Decap CMS), chargée depuis Internet :
       il n'y a rien à installer.
 
       • Tout se fait EN LIGNE, depuis n'importe quel navigateur, à l'adresse
@@ -17,7 +17,10 @@
       • Le bouton « Publier » enregistre les modifications et les envoie
         automatiquement sur GitHub (commit + push) : le site se met à jour
         tout seul en une à deux minutes. Aucun code, aucun terminal.
+      • Pour les pages, un APERÇU EN DIRECT s'affiche à droite et se met à
+        jour pendant que l'on tape (voir preview.js).
     -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="/admin/preview.js"></script>
   </body>
 </html>
