@@ -59,6 +59,19 @@ dont **la prof (ou le lycée) garde le mot de passe**.
 > 💡 Netlify (netlify.com) fonctionne tout aussi bien si vous préférez ; les étapes
 > sont équivalentes. Vercel est conseillé ici car c'est l'éditeur de Next.js.
 
+> ### 🌐 Pas encore de nom de domaine ? Aucun souci.
+> Vercel fournit tout de suite une adresse **gratuite et permanente** du type
+> `maths-au-sommet.vercel.app`. **Faites toute la suite avec cette adresse** :
+> le site **et** l'admin (avec le bouton « Publier ») fonctionnent à 100 %.
+> Le vrai nom de domaine se branchera **plus tard, en 2 minutes** (Étape 5),
+> **sans rien reconstruire**.
+>
+> 👉 Astuce pour ne **rien** avoir à refaire le jour du domaine : utilisez
+> l'adresse `.vercel.app` **partout** (URL de callback OAuth à l'Étape 3 et
+> `base_url` à l'Étape 4). Même après avoir ajouté le vrai domaine, l'admin
+> continuera de passer par cette adresse `.vercel.app` (ça marche très bien),
+> et le domaine ne servira qu'à l'affichage pour les visiteurs.
+
 ---
 
 ## Étape 3 — Activer la connexion GitHub de l'admin (l'« app OAuth »)
@@ -70,8 +83,9 @@ C'est ce qui permet au bouton **« Publier »** de pousser tout seul.
 2. Remplissez :
    - **Application name** : `Admin Maths au Sommet`
    - **Homepage URL** : l'adresse du site (ex. `https://maths-au-sommet.fr`)
-   - **Authorization callback URL** : **`https://maths-au-sommet.fr/api/callback`**
-     (⚠️ exactement cette adresse, en remplaçant par votre domaine)
+   - **Authorization callback URL** : l'adresse de votre site suivie de
+     `/api/callback`. **Si vous n'avez pas encore le domaine**, mettez
+     **`https://votre-projet.vercel.app/api/callback`** (⚠️ l'adresse exacte).
 3. **Register application**. GitHub affiche un **Client ID**.
 4. Cliquez **Generate a new client secret** → copiez le **Client secret**.
 
