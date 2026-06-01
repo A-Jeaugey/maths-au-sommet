@@ -43,21 +43,38 @@
   function esc(s) {
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
-  // Mini-markdown → HTML, suffisant pour l'aperçu.
+  // Inline markdown → HTML (gras, italique, barré, code, liens, images).
+  function inline(t) {
+    t = esc(t);
+    t = t.replace(/!\[[^\]]*\]\(([^)\s]+)(?:\s+&quot;[^&]*&quot;)?\)/g, '<img src="$1" style="max-width:100%;border-radius:2px;" />');
+    t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" style="color:' + C.glacier + ';">$1</a>');
+    t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/__([^_]+)__/g, "<strong>$1</strong>");
+    t = t.replace(/\*([^*]+)\*/g, "<em>$1</em>").replace(/(^|[^\w])_([^_]+)_/g, "$1<em>$2</em>");
+    t = t.replace(/~~([^~]+)~~/g, "<s>$1</s>");
+    t = t.replace(/`([^`]+)`/g, '<code style="background:rgba(74,175,212,0.15);padding:1px 5px;border-radius:3px;font-family:' + F.mono + ';font-size:0.9em;">$1</code>');
+    return t;
+  }
+  // Block markdown → HTML, aligné sur le vrai moteur du site (titres, listes,
+  // paragraphes, images en bloc).
   function md(src) {
     if (!src) return "";
     return String(src).split(/\n\s*\n/).map(function (blk) {
+      var lines = blk.split("\n");
       var t = blk.trim();
       var img = t.match(/^!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)$/);
       if (img) return '<img src="' + img[1] + '" style="max-width:100%;border-radius:2px;display:block;margin:8px 0;" />';
-      t = esc(t);
-      t = t.replace(/!\[[^\]]*\]\(([^)\s]+)(?:\s+&quot;[^&]*&quot;)?\)/g, '<img src="$1" style="max-width:100%;border-radius:2px;" />');
-      t = t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" style="color:' + C.glacier + ';">$1</a>');
-      t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>").replace(/__([^_]+)__/g, "<strong>$1</strong>");
-      t = t.replace(/\*([^*]+)\*/g, "<em>$1</em>").replace(/(^|[^\w])_([^_]+)_/g, "$1<em>$2</em>");
-      t = t.replace(/~~([^~]+)~~/g, "<s>$1</s>");
-      t = t.replace(/`([^`]+)`/g, '<code style="background:rgba(74,175,212,0.15);padding:1px 5px;border-radius:3px;font-family:' + F.mono + ';font-size:0.9em;">$1</code>');
-      return '<p style="margin:0 0 1em;line-height:1.75;">' + t + "</p>";
+      var hd = t.match(/^(#{1,6})\s+([\s\S]*)$/);
+      if (hd) {
+        var fs = hd[1].length <= 2 ? "28px" : "22px";
+        return '<h3 style="font-family:' + F.serif + ';font-weight:300;font-size:' + fs + ';line-height:1.15;margin:18px 0 8px;">' + inline(hd[2]) + "</h3>";
+      }
+      if (lines.every(function (l) { return /^[-*+]\s+/.test(l.trim()); })) {
+        return '<ul style="margin:0 0 1em;padding-left:20px;line-height:1.7;">' + lines.map(function (l) { return "<li>" + inline(l.trim().replace(/^[-*+]\s+/, "")) + "</li>"; }).join("") + "</ul>";
+      }
+      if (lines.every(function (l) { return /^\d+\.\s+/.test(l.trim()); })) {
+        return '<ol style="margin:0 0 1em;padding-left:22px;line-height:1.7;">' + lines.map(function (l) { return "<li>" + inline(l.trim().replace(/^\d+\.\s+/, "")) + "</li>"; }).join("") + "</ol>";
+      }
+      return '<p style="margin:0 0 1em;line-height:1.75;">' + inline(lines.join(" ")) + "</p>";
     }).join("");
   }
   function htmlNode(html, style) {
