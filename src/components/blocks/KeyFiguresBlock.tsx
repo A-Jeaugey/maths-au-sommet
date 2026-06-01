@@ -26,11 +26,12 @@ const MAXW: Record<number, string> = {
 
 export function KeyFiguresBlock({ figures, dark }: Props) {
   const t = tones(dark);
-  const actual = Math.max(1, Math.min(4, figures.length));
-  const mobile = figures.length < 2 ? "grid-cols-1" : "grid-cols-2";
+  const items = figures || [];
+  const actual = Math.max(1, Math.min(4, items.length));
+  const mobile = items.length < 2 ? "grid-cols-1" : "grid-cols-2";
   return (
     <div className={clsx("mx-auto grid gap-4", mobile, COLS[actual], MAXW[actual])}>
-      {figures.map((kf, i) => (
+      {items.map((kf, i) => (
         <Reveal key={i} delay={i * 0.06}>
           <div
             className={clsx(

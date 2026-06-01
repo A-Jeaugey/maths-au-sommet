@@ -29,8 +29,9 @@ const MAXW: Record<number, string> = {
 
 export function CardGridBlock({ title, columns = 3, cards, dark }: Props) {
   const t = tones(dark);
+  const items = cards || [];
   const requested = Math.max(1, Math.min(columns || 3, 4));
-  const actual = Math.max(1, Math.min(requested, cards.length));
+  const actual = Math.max(1, Math.min(requested, items.length));
   return (
     <div>
       {title && (
@@ -43,12 +44,12 @@ export function CardGridBlock({ title, columns = 3, cards, dark }: Props) {
       <div
         className={clsx(
           "mx-auto grid grid-cols-1 gap-4",
-          cards.length >= 2 && "sm:grid-cols-2",
+          items.length >= 2 && "sm:grid-cols-2",
           COLS[actual],
           MAXW[actual]
         )}
       >
-        {cards.map((card, i) => {
+        {items.map((card, i) => {
           const url = card.linkUrl ? normalizeUrl(card.linkUrl) : null;
           const ext = url ? isExternalUrl(url) : false;
           return (

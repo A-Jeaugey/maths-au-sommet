@@ -12,7 +12,8 @@ export function AnimatedNumber({ value, duration = 1.6 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const reduce = useReducedMotion();
-  const [n, setN] = useState(reduce ? value : 0);
+  const safe = typeof value === "number" && Number.isFinite(value) ? value : 0;
+  const [n, setN] = useState(reduce ? safe : 0);
 
   useEffect(() => {
     if (!inView || reduce) return;
@@ -21,12 +22,12 @@ export function AnimatedNumber({ value, duration = 1.6 }: Props) {
     const step = (now: number) => {
       const t = Math.min(1, (now - start) / (duration * 1000));
       const eased = 1 - Math.pow(1 - t, 3);
-      setN(Math.round(value * eased));
+      setN(Math.round(safe * eased));
       if (t < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, [inView, reduce, value, duration]);
+  }, [inView, reduce, safe, duration]);
 
   return (
     <span ref={ref} className="tabular-nums">

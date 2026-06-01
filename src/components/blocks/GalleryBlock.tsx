@@ -22,7 +22,7 @@ export function GalleryBlock({ title, images, dark }: Props) {
         </Reveal>
       )}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {images.map((img, i) => (
+        {(images || []).map((img, i) => (
           <Reveal key={i} delay={(i % 3) * 0.06}>
             <figure
               className={clsx(

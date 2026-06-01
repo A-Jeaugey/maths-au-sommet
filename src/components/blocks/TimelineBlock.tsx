@@ -19,7 +19,7 @@ export function TimelineBlock({ steps, dark }: Props) {
           dark ? "bg-neige/15" : "bg-encre/15"
         )}
       />
-      {steps.map((step, i) => (
+      {(steps || []).map((step, i) => (
         <li key={i} className="relative pb-12 pl-12 last:pb-0">
           <Reveal delay={0.02}>
             <span aria-hidden className="absolute left-3 top-1.5 z-10 -translate-x-1/2">
