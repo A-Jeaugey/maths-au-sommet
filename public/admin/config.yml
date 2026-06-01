@@ -36,8 +36,8 @@ backend:
 local_backend: true
 
 # Dossier où atterrissent les photos importées depuis l'admin.
-media_folder: "public/uploads"
-public_folder: "/uploads"
+media_folder: "public/photos"
+public_folder: "/photos"
 
 # Langue de l'interface.
 locale: fr
@@ -136,16 +136,6 @@ collections:
               - { name: deniveleUp, label: "Dénivelé positif", widget: string }
               - { name: deniveleDown, label: "Dénivelé négatif", widget: string }
               - { name: note, label: "Description", widget: text }
-
-          - name: gallery
-            label: "Galerie photos de l'accueil"
-            label_singular: "Photo"
-            widget: list
-            summary: "{{fields.meta}}"
-            fields:
-              - { name: image, label: "Photo", widget: image }
-              - { name: caption, label: "Légende (optionnel)", widget: string, required: false }
-              - { name: meta, label: "Lieu / date (optionnel)", widget: string, required: false }
 
   # ---------------------------------------------------------------------------
   #  PAGES — l'usine à pages. Créer/modifier des pages faites de blocs.
