@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <title>Administration — Les Maths au Sommet</title>
+    <!-- Chemin ABSOLU de la config : évite l'erreur « Failed to load config.yml (404) »
+         quand /admin est ouvert sans slash final (Decap chercherait /config.yml). -->
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
   </head>
   <body>
     <!--
