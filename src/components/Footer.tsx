@@ -1,4 +1,5 @@
-import { SITE } from "@/lib/content";
+import { SITE, FOOTER } from "@/lib/content";
+import { normalizeUrl, isExternalUrl } from "@/lib/url";
 
 export function Footer() {
   return (
@@ -21,80 +22,35 @@ export function Footer() {
           </div>
 
           <div className="grid grid-cols-2 gap-10 md:col-span-7 md:grid-cols-3">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-wider2 text-neige/40">
-                Aller à
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-neige/80">
-                <li>
-                  <a
-                    href="#projet"
-                    className="transition-colors hover:text-glacier"
-                  >
-                    Le projet
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#tete-blanche"
-                    className="transition-colors hover:text-glacier"
-                  >
-                    Tête Blanche
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#annee"
-                    className="transition-colors hover:text-glacier"
-                  >
-                    L&apos;année
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#galerie"
-                    className="transition-colors hover:text-glacier"
-                  >
-                    Galerie
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-wider2 text-neige/40">
-                Contact
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-neige/80">
-                <li>
-                  <a
-                    href={`mailto:${SITE.contactEmail}`}
-                    className="transition-colors hover:text-glacier"
-                  >
-                    Écrire à l&apos;équipe
-                  </a>
-                </li>
-                <li>{SITE.schoolName}</li>
-                <li>{SITE.city}, France</li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-wider2 text-neige/40">
-                Soutenir
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-neige/80">
-                <li>
-                  <a
-                    href={SITE.hellloAssoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="transition-colors hover:text-glacier"
-                  >
-                    Cagnotte HelloAsso →
-                  </a>
-                </li>
-                <li>Mécénat d&apos;entreprise</li>
-              </ul>
-            </div>
+            {FOOTER.columns.map((col, ci) => (
+              <div key={ci}>
+                <p className="font-mono text-[10px] uppercase tracking-wider2 text-neige/40">
+                  {col.title}
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-neige/80">
+                  {col.links.map((link, li) => {
+                    const url = "url" in link && link.url ? normalizeUrl(link.url) : null;
+                    return (
+                      <li key={li}>
+                        {url ? (
+                          <a
+                            href={url}
+                            {...(isExternalUrl(url)
+                              ? { target: "_blank", rel: "noreferrer" }
+                              : {})}
+                            className="transition-colors hover:text-glacier"
+                          >
+                            {link.label}
+                          </a>
+                        ) : (
+                          link.label
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -103,9 +59,9 @@ export function Footer() {
             © {new Date().getFullYear()} Les Maths au Sommet — {SITE.schoolName},{" "}
             {SITE.city} · Tous droits réservés
           </p>
-          <p className="font-mono uppercase tracking-wider2">
-            Crédits photos : équipe enseignante & élèves · Mentions légales
-          </p>
+          {FOOTER.bottomNote && (
+            <p className="font-mono uppercase tracking-wider2">{FOOTER.bottomNote}</p>
+          )}
         </div>
       </div>
     </footer>

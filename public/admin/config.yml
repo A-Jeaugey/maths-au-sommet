@@ -69,6 +69,27 @@ collections:
           - { name: guideCompanyFounded, label: "Année de création de la compagnie", widget: number, value_type: int }
           - { name: costPerStudent, label: "Coût par élève (en euros)", widget: number, value_type: int }
 
+      - name: footer
+        label: "Pied de page"
+        file: "content/footer.json"
+        fields:
+          - name: columns
+            label: "Colonnes de liens"
+            label_singular: "Colonne"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Titre de la colonne", widget: string }
+              - name: links
+                label: "Liens"
+                label_singular: "Lien"
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: "Texte", widget: string }
+                  - { name: url, label: "Adresse (optionnel)", widget: string, required: false, hint: "Laissez vide pour du texte simple. Ex : #projet, mailto:…, https://…" }
+          - { name: bottomNote, label: "Petite ligne en bas (optionnel)", widget: string, required: false }
+
   # ---------------------------------------------------------------------------
   #  PAGE D'ACCUEIL — contenu de la page principale (hors animations/3D).
   # ---------------------------------------------------------------------------
@@ -198,7 +219,13 @@ collections:
         label: "Phrase de présentation"
         widget: text
         required: false
-        hint: "Affichée juste sous le grand titre, en haut de la page."
+        hint: "Affichée sous le grand titre, et utilisée comme description pour les moteurs de recherche / partages."
+
+      - name: ogImage
+        label: "Image de partage (réseaux sociaux)"
+        widget: image
+        required: false
+        hint: "Image affichée quand la page est partagée (Facebook, WhatsApp…). Optionnel."
 
       - name: theme
         label: "Ambiance de la page"

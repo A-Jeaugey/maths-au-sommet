@@ -1,0 +1,29 @@
+{
+  "columns": [
+    {
+      "title": "Aller à",
+      "links": [
+        { "label": "Le projet", "url": "#projet" },
+        { "label": "Tête Blanche", "url": "#tete-blanche" },
+        { "label": "L'année", "url": "#annee" },
+        { "label": "Galerie", "url": "#galerie" }
+      ]
+    },
+    {
+      "title": "Contact",
+      "links": [
+        { "label": "Écrire à l'équipe", "url": "mailto:contact@notredame-dijon.fr" },
+        { "label": "Lycée Notre-Dame" },
+        { "label": "Dijon, France" }
+      ]
+    },
+    {
+      "title": "Soutenir",
+      "links": [
+        { "label": "Cagnotte HelloAsso →", "url": "https://www.helloasso.com/" },
+        { "label": "Mécénat d'entreprise" }
+      ]
+    }
+  ],
+  "bottomNote": "Crédits photos : équipe enseignante & élèves · Mentions légales"
+}

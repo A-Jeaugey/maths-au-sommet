@@ -22,7 +22,17 @@ export function generateMetadata({
 }): Metadata {
   const page = getPage(params.slug);
   if (!page) return {};
-  return { title: page.title, description: page.description };
+  const images = page.ogImage ? [page.ogImage] : undefined;
+  return {
+    title: page.title,
+    description: page.description,
+    openGraph: { title: page.title, description: page.description, images },
+    twitter: {
+      card: page.ogImage ? "summary_large_image" : "summary",
+      title: page.title,
+      description: page.description,
+    },
+  };
 }
 
 export default function CustomPage({ params }: { params: { slug: string } }) {

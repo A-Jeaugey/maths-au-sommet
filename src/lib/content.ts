@@ -12,8 +12,10 @@
 
 import site from "../../content/site.json";
 import home from "../../content/home.json";
+import footer from "../../content/footer.json";
 
 export const SITE = site;
+export const FOOTER = footer;
 
 // Each chapter carries an altitude that ascends from Le Tour (1 462 m) to
 // the Tête Blanche summit (3 429 m), giving the page its climbing-narrative

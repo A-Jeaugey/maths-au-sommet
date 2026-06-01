@@ -87,6 +87,7 @@ export type PageData = {
   slug: string;
   title: string;
   description?: string;
+  ogImage?: string;
   theme?: Theme;
   blocks: Block[];
 };
@@ -110,6 +111,7 @@ export function getPage(slug: string): PageData | null {
       slug,
       title: data.title ?? slug,
       description: data.description,
+      ogImage: data.ogImage,
       theme: data.theme === "dark" ? "dark" : "light",
       blocks: Array.isArray(data.blocks) ? data.blocks : [],
     };
