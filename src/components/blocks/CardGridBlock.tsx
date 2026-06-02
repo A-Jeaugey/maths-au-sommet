@@ -11,9 +11,9 @@ type Props = {
   dark?: boolean;
 };
 
-// The chosen column count is a maximum: the grid never renders empty cells.
-// Actual columns = min(chosen, number of cards), and the grid is centred, so
-// fewer cards stay tidy and more cards simply wrap onto the next row.
+// Look d'origine (grille à filets fins connectés). Le nombre de colonnes est un
+// maximum : la grille s'adapte au nombre de cases et se centre, pour éviter les
+// cellules vides grises quand il y a moins de cases que de colonnes.
 const COLS: Record<number, string> = {
   1: "md:grid-cols-1",
   2: "md:grid-cols-2",
@@ -31,7 +31,7 @@ export function CardGridBlock({ title, columns = 3, cards, dark }: Props) {
   const t = tones(dark);
   const items = cards || [];
   const requested = Math.max(1, Math.min(columns || 3, 4));
-  const actual = Math.max(1, Math.min(requested, items.length));
+  const actual = Math.max(1, Math.min(requested, items.length || 1));
   return (
     <div>
       {title && (
@@ -43,10 +43,12 @@ export function CardGridBlock({ title, columns = 3, cards, dark }: Props) {
       )}
       <div
         className={clsx(
-          "mx-auto grid grid-cols-1 gap-4",
+          "mx-auto grid grid-cols-1 gap-px overflow-hidden border-y",
           items.length >= 2 && "sm:grid-cols-2",
           COLS[actual],
-          MAXW[actual]
+          MAXW[actual],
+          t.gridBg,
+          t.hairline
         )}
       >
         {items.map((card, i) => {
@@ -54,13 +56,7 @@ export function CardGridBlock({ title, columns = 3, cards, dark }: Props) {
           const ext = url ? isExternalUrl(url) : false;
           return (
             <Reveal key={i} delay={i * 0.06}>
-              <div
-                className={clsx(
-                  "flex h-full flex-col gap-4 border p-6 md:p-8",
-                  t.hairline,
-                  t.cardBg
-                )}
-              >
+              <div className={clsx("flex h-full flex-col gap-4 p-6 md:p-8", t.cardBg)}>
                 {card.icon && (
                   <span className="text-3xl leading-none" aria-hidden>
                     {card.icon}

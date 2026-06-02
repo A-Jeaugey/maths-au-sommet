@@ -9,8 +9,8 @@ type Props = {
   dark?: boolean;
 };
 
-// Columns adapt to the number of figures (max 4) and the grid is centred, so
-// two figures sit neatly side by side instead of leaving an empty grey block.
+// Look d'origine (grille à filets fins connectés). S'adapte au nombre de
+// chiffres (max 4) et se centre, pour éviter les cellules grises.
 const COLS: Record<number, string> = {
   1: "md:grid-cols-1",
   2: "md:grid-cols-2",
@@ -27,16 +27,24 @@ const MAXW: Record<number, string> = {
 export function KeyFiguresBlock({ figures, dark }: Props) {
   const t = tones(dark);
   const items = figures || [];
-  const actual = Math.max(1, Math.min(4, items.length));
+  const actual = Math.max(1, Math.min(4, items.length || 1));
   const mobile = items.length < 2 ? "grid-cols-1" : "grid-cols-2";
   return (
-    <div className={clsx("mx-auto grid gap-4", mobile, COLS[actual], MAXW[actual])}>
+    <div
+      className={clsx(
+        "mx-auto grid gap-px overflow-hidden border-y",
+        mobile,
+        COLS[actual],
+        MAXW[actual],
+        t.gridBg,
+        t.hairline
+      )}
+    >
       {items.map((kf, i) => (
         <Reveal key={i} delay={i * 0.06}>
           <div
             className={clsx(
-              "flex h-full flex-col justify-between gap-6 border p-6 md:p-10",
-              t.hairline,
+              "flex h-full flex-col justify-between gap-6 p-6 md:p-10",
               t.cardBg
             )}
           >
