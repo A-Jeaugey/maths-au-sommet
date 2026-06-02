@@ -25,6 +25,14 @@ export function ZoomableImage({
   className?: string;
 }) {
   const [open, setOpen] = useState(false);
+  if (!src) {
+    return (
+      <div
+        className={clsx("relative block w-full bg-encre/10", className)}
+        aria-hidden
+      />
+    );
+  }
   return (
     <>
       <button

@@ -25,7 +25,14 @@ export type Figure = { value: number; suffix?: string; label: string };
 
 export type Step = { date?: string; title: string; body?: string };
 
-export type Background = "inherit" | "light" | "dark" | "accent";
+export type Background =
+  | "inherit"
+  | "light"
+  | "dark"
+  | "accent"
+  | "light-lines"
+  | "dark-lines"
+  | "mountain";
 
 // Discriminated union — `type` decides which component renders the block.
 // `background` lets a block sit on its own light or dark band, so a single

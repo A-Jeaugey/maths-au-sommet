@@ -17,7 +17,7 @@ export function ContourLines({ variant = "ridge", className }: Props) {
       viewBox="0 0 800 600"
       preserveAspectRatio="xMidYMid slice"
       className={clsx(
-        "pointer-events-none absolute h-full w-full text-encre",
+        "pointer-events-none absolute h-full w-full",
         className
       )}
       aria-hidden
@@ -65,30 +65,6 @@ export function ContourLines({ variant = "ridge", className }: Props) {
             <path d="M460 -10 C 490 100 430 210 500 300 S 450 460 530 560 S 490 620 580 620" />
             <path d="M670 -10 C 700 100 640 220 710 310 S 660 470 740 570 S 700 620 790 620" />
           </>
-        )}
-      </g>
-      {/* A couple of altitude labels for the carnet feel */}
-      <g
-        fontFamily="var(--font-jetbrains), monospace"
-        fontSize="9"
-        fill="currentColor"
-        opacity="0.13"
-      >
-        {variant === "summit" && (
-          <>
-            <text x="715" y="282">3 050</text>
-            <text x="715" y="370">2 700</text>
-          </>
-        )}
-        {variant === "ridge" && (
-          <text x="715" y="184" textAnchor="end">
-            2 400
-          </text>
-        )}
-        {variant === "valley" && (
-          <text x="40" y="184" textAnchor="start">
-            1 700
-          </text>
         )}
       </g>
     </svg>

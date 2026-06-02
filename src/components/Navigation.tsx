@@ -11,12 +11,17 @@ type NavProps = {
   basePath?: string;
   /** Custom pages built in the admin, listed under the chapters. */
   pages?: { slug: string; title: string }[];
+  /** Whether the top of the page is dark (dark hero / dark theme). When false
+   *  (a light page at the top), the header uses dark text so it stays visible. */
+  dark?: boolean;
 };
 
-export function Navigation({ basePath = "", pages = [] }: NavProps) {
+export function Navigation({ basePath = "", pages = [], dark = true }: NavProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const homeHref = basePath ? "/" : "#hero";
+  const topText = dark ? "text-neige" : "text-encre";
+  const topBar = dark ? "bg-neige" : "bg-encre";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -40,7 +45,7 @@ export function Navigation({ basePath = "", pages = [] }: NavProps) {
             href={homeHref}
             className={clsx(
               "font-serif text-lg leading-none tracking-tight transition-colors",
-              scrolled ? "text-encre" : "text-neige"
+              scrolled ? "text-encre" : topText
             )}
           >
             Les Maths au Sommet
@@ -55,7 +60,9 @@ export function Navigation({ basePath = "", pages = [] }: NavProps) {
               "group flex items-center gap-3 rounded-full px-4 py-2 text-xs uppercase tracking-wider2 transition-colors",
               scrolled
                 ? "text-encre hover:bg-encre/5"
-                : "text-neige hover:bg-neige/10"
+                : dark
+                ? "text-neige hover:bg-neige/10"
+                : "text-encre hover:bg-encre/5"
             )}
           >
             <span className="hidden sm:inline">{open ? "Fermer" : "Sommaire"}</span>
@@ -63,14 +70,14 @@ export function Navigation({ basePath = "", pages = [] }: NavProps) {
               <span
                 className={clsx(
                   "absolute inset-x-0 top-0 block h-px transition-transform duration-300 ease-editorial",
-                  scrolled ? "bg-encre" : "bg-neige",
+                  scrolled ? "bg-encre" : topBar,
                   open && "translate-y-[6px] rotate-45"
                 )}
               />
               <span
                 className={clsx(
                   "absolute inset-x-0 bottom-0 block h-px transition-transform duration-300 ease-editorial",
-                  scrolled ? "bg-encre" : "bg-neige",
+                  scrolled ? "bg-encre" : topBar,
                   open && "-translate-y-[6px] -rotate-45"
                 )}
               />

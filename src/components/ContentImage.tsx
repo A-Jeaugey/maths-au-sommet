@@ -19,6 +19,7 @@ export function ContentImage({
   block?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  if (!src) return null;
   const caption = (title || alt || "").trim();
   const lightbox = (
     <Lightbox item={open ? { src, caption } : null} onClose={() => setOpen(false)} />

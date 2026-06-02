@@ -1,5 +1,7 @@
 import clsx from "clsx";
 import type { Block } from "@/lib/pages";
+import { ContourLines } from "@/components/ContourLines";
+import { MountainRelief } from "@/components/MountainRelief";
 import { SectionHeaderBlock } from "./SectionHeaderBlock";
 import { RichTextBlock } from "./RichTextBlock";
 import { CardGridBlock } from "./CardGridBlock";
@@ -78,35 +80,52 @@ const WIDTH: Record<string, string> = {
 // Blocks that render edge-to-edge, without the centered content container.
 const FULL_BLEED = new Set(["banner", "separator"]);
 
-// Each block can opt into its own light/dark/accent band via `background`, and
-// pick its container width and text alignment — so one page can alternate
-// clear, dark and accent sections of different widths.
+// Each block can opt into its own background band: light / dark / accent, with
+// optional decorative lines (lignes de niveau) or a mountain relief — so one
+// page can alternate clear, dark, accent and decorated sections.
 export function BlockRenderer({ blocks, dark }: { blocks: Block[]; dark?: boolean }) {
   return (
     <>
       {blocks.map((block, i) => {
         const bg = block.background;
-        const blockDark = bg === "dark" ? true : bg === "light" || bg === "accent" ? false : !!dark;
+        const blockDark =
+          bg === "dark" || bg === "dark-lines" || bg === "mountain"
+            ? true
+            : bg === "light" || bg === "accent" || bg === "light-lines"
+            ? false
+            : !!dark;
 
         if (FULL_BLEED.has(block.type)) {
           return <div key={i}>{renderBlock(block, blockDark)}</div>;
         }
 
         const band =
-          bg === "dark"
+          bg === "dark" || bg === "dark-lines" || bg === "mountain"
             ? "grain bg-nuit text-neige"
-            : bg === "light"
+            : bg === "light" || bg === "light-lines"
             ? "bg-neige text-encre"
             : bg === "accent"
             ? "bg-soleil text-nuit"
             : null;
+
+        const decoration =
+          bg === "light-lines" || bg === "dark-lines" ? (
+            <ContourLines
+              variant={blockDark ? "summit" : "ridge"}
+              className="inset-0 h-full"
+            />
+          ) : bg === "mountain" ? (
+            <MountainRelief />
+          ) : null;
+
         const widthClass = WIDTH[block.width ?? "normal"] ?? WIDTH.normal;
 
         return (
-          <section key={i} className={clsx(band)}>
+          <section key={i} className={clsx("relative isolate overflow-hidden", band)}>
+            {decoration}
             <div
               className={clsx(
-                "mx-auto px-6 py-12 md:px-10 md:py-16",
+                "relative mx-auto px-6 py-12 md:px-10 md:py-16",
                 widthClass,
                 block.align === "center" && "text-center"
               )}

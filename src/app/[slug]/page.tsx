@@ -42,7 +42,7 @@ export default function CustomPage({ params }: { params: { slug: string } }) {
   return (
     <>
       <ScrollProgress />
-      <Navigation basePath="/" pages={pages} />
+      <Navigation basePath="/" pages={pages} dark={page.theme === "dark"} />
       <PageBody
         title={page.title}
         description={page.description}
