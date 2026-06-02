@@ -29,7 +29,15 @@ export function Footer() {
                 </p>
                 <ul className="mt-4 space-y-2 text-sm text-neige/80">
                   {col.links.map((link, li) => {
-                    const url = "url" in link && link.url ? normalizeUrl(link.url) : null;
+                    const raw = "url" in link ? link.url : undefined;
+                    // Une ancre seule (#section) viserait la page courante ; on
+                    // la pointe vers l'accueil pour qu'elle marche depuis une
+                    // page secondaire (ex. /tombola).
+                    const url = raw
+                      ? raw.startsWith("#")
+                        ? "/" + raw
+                        : normalizeUrl(raw)
+                      : null;
                     return (
                       <li key={li}>
                         {url ? (

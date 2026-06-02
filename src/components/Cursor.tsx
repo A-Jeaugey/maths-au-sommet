@@ -70,7 +70,7 @@ export function Cursor() {
       }
       const el = dotRef.current;
       if (el) {
-        el.style.transform = `translate3d(${curX}px, ${curY}px, 0)`;
+        el.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
       }
       raf = requestAnimationFrame(tick);
     };
