@@ -62,27 +62,27 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-neige/10 pt-8 text-xs text-neige/50 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} Les Maths au Sommet — {SITE.schoolName},{" "}
-            {SITE.city} · Tous droits réservés
-          </p>
-          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-5">
+        <div className="mt-16 border-t border-neige/10 pt-8 text-xs text-neige/50">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <p>
+              © {new Date().getFullYear()} Les Maths au Sommet — {SITE.schoolName},{" "}
+              {SITE.city} · Tous droits réservés
+            </p>
             {FOOTER.bottomNote && (
               <p className="font-mono uppercase tracking-wider2">{FOOTER.bottomNote}</p>
             )}
-            <p>
-              Site intégralement conçu par{" "}
-              <a
-                href="https://arthurjeaugey.com"
-                target="_blank"
-                rel="noreferrer"
-                className="credit-shine font-medium transition-opacity hover:opacity-80"
-              >
-                Arthur Jeaugey
-              </a>
-            </p>
           </div>
+          <p className="mt-8 text-center">
+            Site intégralement conçu par{" "}
+            <a
+              href="https://arthurjeaugey.com"
+              target="_blank"
+              rel="noreferrer"
+              className="credit-shine border-b border-glacier/40 pb-0.5 font-medium transition-colors hover:border-glacier"
+            >
+              Arthur Jeaugey
+            </a>
+          </p>
         </div>
       </div>
     </footer>
