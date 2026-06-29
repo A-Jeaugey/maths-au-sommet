@@ -72,12 +72,12 @@ export function Footer() {
               <p className="font-mono uppercase tracking-wider2">{FOOTER.bottomNote}</p>
             )}
             <p>
-              Conçu par{" "}
+              Site intégralement conçu par{" "}
               <a
                 href="https://arthurjeaugey.com"
                 target="_blank"
                 rel="noreferrer"
-                className="underline underline-offset-2 transition-colors hover:text-glacier"
+                className="credit-shine font-medium transition-opacity hover:opacity-80"
               >
                 Arthur Jeaugey
               </a>
