@@ -35,7 +35,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://maths-au-sommet.fr"),
+  metadataBase: new URL("https://les-maths-au-sommet.org"),
   title: {
     default: "Les Maths au Sommet — Lycée Notre-Dame, Dijon",
     template: "%s · Les Maths au Sommet",
