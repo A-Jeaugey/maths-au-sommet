@@ -67,9 +67,22 @@ export function Footer() {
             © {new Date().getFullYear()} Les Maths au Sommet — {SITE.schoolName},{" "}
             {SITE.city} · Tous droits réservés
           </p>
-          {FOOTER.bottomNote && (
-            <p className="font-mono uppercase tracking-wider2">{FOOTER.bottomNote}</p>
-          )}
+          <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-5">
+            {FOOTER.bottomNote && (
+              <p className="font-mono uppercase tracking-wider2">{FOOTER.bottomNote}</p>
+            )}
+            <p>
+              Conçu par{" "}
+              <a
+                href="https://arthurjeaugey.com"
+                target="_blank"
+                rel="noreferrer"
+                className="underline underline-offset-2 transition-colors hover:text-glacier"
+              >
+                Arthur Jeaugey
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
