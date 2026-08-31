@@ -68,6 +68,7 @@ collections:
           - { name: guideCompany, label: "Compagnie des guides", widget: string }
           - { name: guideCompanyFounded, label: "Année de création de la compagnie", widget: number, value_type: int }
           - { name: costPerStudent, label: "Coût par élève (en euros)", widget: number, value_type: int }
+          - { name: heroFallbackImage, label: "Image de secours de l'accueil (si la 3D ne charge pas)", widget: image, required: false, hint: "Photo affichée à la place de la montagne 3D sur les appareils/connexions limités. Optionnel — idéalement une photo de Tête Blanche libre de droits." }
 
       - name: footer
         label: "Pied de page"

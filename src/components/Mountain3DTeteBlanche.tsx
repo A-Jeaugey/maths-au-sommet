@@ -454,6 +454,12 @@ export function Mountain3DTeteBlanche() {
         }
 
         renderer.render(scene, camera);
+        // Signale à l'écran d'intro que la première image 3D est rendue.
+        const _w = window as unknown as { __heroReady?: boolean };
+        if (!_w.__heroReady) {
+          _w.__heroReady = true;
+          window.dispatchEvent(new Event("hero:ready"));
+        }
       };
 
       const loop = () => {

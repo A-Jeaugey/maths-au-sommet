@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/Navigation";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { SiteLoader } from "@/components/SiteLoader";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/sections/Hero";
 import { Projet } from "@/sections/Projet";
@@ -15,6 +16,7 @@ export default function Home() {
   const pages = getPageLinks();
   return (
     <>
+      <SiteLoader />
       <ScrollProgress />
       <Navigation pages={pages} />
       <main>

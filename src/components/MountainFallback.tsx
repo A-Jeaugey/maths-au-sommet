@@ -1,11 +1,25 @@
+import Image from "next/image";
+import { SITE } from "@/lib/content";
+
 /**
- * Static SVG fallback for the hero — shown during SSR, while three.js loads,
- * for users with prefers-reduced-motion, or when WebGL is unavailable.
+ * Fallback du hero — affiché pendant le SSR, le temps que three.js charge,
+ * pour prefers-reduced-motion, ou quand WebGL est indisponible.
  *
- * Layered ridges with a dawn sky and a sun glow. No animated SVG (CSS only)
- * so it stays cheap on low-end devices.
+ * Si une photo de secours est renseignée (Réglages → Image de secours), elle
+ * est utilisée ; sinon, un décor SVG en dégradé (léger, sans animation).
  */
 export function MountainFallback() {
+  const photo = SITE.heroFallbackImage;
+
+  if (photo) {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <Image src={photo} alt="" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-nuit/25" />
+      </div>
+    );
+  }
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       <svg
@@ -19,14 +33,7 @@ export function MountainFallback() {
             <stop offset="55%" stopColor="#15314e" />
             <stop offset="100%" stopColor="#3a6da0" />
           </linearGradient>
-          <radialGradient
-            id="hero-sun"
-            cx="22%"
-            cy="58%"
-            r="35%"
-            fx="22%"
-            fy="58%"
-          >
+          <radialGradient id="hero-sun" cx="22%" cy="58%" r="35%" fx="22%" fy="58%">
             <stop offset="0%" stopColor="#f4b942" stopOpacity="0.45" />
             <stop offset="55%" stopColor="#f4b942" stopOpacity="0.07" />
             <stop offset="100%" stopColor="#f4b942" stopOpacity="0" />
@@ -79,13 +86,7 @@ export function MountainFallback() {
         />
 
         {/* Bottom fade for text legibility */}
-        <rect
-          x="0"
-          y="540"
-          width="1600"
-          height="360"
-          fill="url(#hero-bottom-fade)"
-        />
+        <rect x="0" y="540" width="1600" height="360" fill="url(#hero-bottom-fade)" />
       </svg>
     </div>
   );
